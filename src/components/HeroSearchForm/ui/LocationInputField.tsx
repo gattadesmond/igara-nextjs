@@ -28,51 +28,94 @@ type Suggest = {
 const demoInitSuggests: Suggest[] = [
   {
     id: '1',
-    name: 'Bangkok, Thailand',
+    name: 'Hà Nội',
     icon: HutIcon,
   },
   {
     id: '2',
-    name: 'Ueno, Taito, Tokyo',
+    name: 'TP. Hồ Chí Minh',
     icon: EiffelTowerIcon,
   },
   {
     id: '3',
-    name: 'Ikebukuro, Toshima, Tokyo',
+    name: 'Đà Nẵng',
     icon: TwinTowerIcon,
   },
   {
     id: '4',
-    name: 'San Diego, CA',
+    name: 'Hải Phòng',
     icon: BeachIcon,
   },
   {
     id: '5',
-    name: 'Humboldt Park, Chicago, IL',
+    name: 'Cần Thơ',
     icon: LakeIcon,
+  },
+  {
+    id: '6',
+    name: 'Bình Dương',
+    icon: HutIcon,
+  },
+  {
+    id: '7',
+    name: 'Đồng Nai',
+    icon: EiffelTowerIcon,
+  },
+  {
+    id: '8',
+    name: 'Khánh Hòa',
+    icon: TwinTowerIcon,
   },
 ]
 
 const demoSearchingSuggests: Suggest[] = [
   {
     id: '1',
-    name: 'San Diego, CA',
+    name: 'Hà Nội',
   },
   {
     id: '2',
-    name: 'Humboldt Park, Chicago, IL',
+    name: 'TP. Hồ Chí Minh',
   },
   {
     id: '3',
-    name: 'Bangor, Northern Ireland',
+    name: 'Đà Nẵng',
   },
   {
     id: '4',
-    name: 'New York, NY, United States',
+    name: 'Hải Phòng',
   },
   {
     id: '5',
-    name: 'Los Angeles, CA, United States',
+    name: 'Cần Thơ',
+  },
+  {
+    id: '6',
+    name: 'Bình Dương',
+  },
+  {
+    id: '7',
+    name: 'Đồng Nai',
+  },
+  {
+    id: '8',
+    name: 'Khánh Hòa',
+  },
+  {
+    id: '9',
+    name: 'Quảng Ninh',
+  },
+  {
+    id: '10',
+    name: 'Thái Nguyên',
+  },
+  {
+    id: '11',
+    name: 'Nghệ An',
+  },
+  {
+    id: '12',
+    name: 'Thanh Hóa',
   },
 ]
 
@@ -217,12 +260,12 @@ export const LocationInputField: FC<Props> = ({
 
         <Headless.Transition show={showPopover} unmount={false}>
           <div className={clsx(styles.panel.base, styles.panel[fieldStyle])}>
-            {isShowInitSuggests && (
+            {/* {isShowInitSuggests && (
               <p className="mt-2 mb-3 px-4 text-xs/6 font-normal text-neutral-600 sm:mt-0 sm:px-8 dark:text-neutral-400">
                 {T['HeroSearchForm']['Suggested locations']}
               </p>
             )}
-            {isShowInitSuggests && <Divider className="opacity-50" />}
+            {isShowInitSuggests && <Divider className="opacity-50" />} */}
             <Headless.ComboboxOptions static unmount={false}>
               {suggestsToShow.map((item) => (
                 <Headless.ComboboxOption
@@ -231,7 +274,7 @@ export const LocationInputField: FC<Props> = ({
                   className="flex items-center gap-3 p-4 data-focus:bg-neutral-100 sm:gap-4.5 sm:px-8 dark:data-focus:bg-neutral-700"
                 >
                   <HugeiconsIcon
-                    icon={item.icon || Location01Icon}
+                    icon={Location01Icon}
                     className="size-4 text-neutral-400 sm:size-6 dark:text-neutral-500"
                   />
                   <span className="block font-medium text-neutral-700 dark:text-neutral-200">{item.name}</span>
