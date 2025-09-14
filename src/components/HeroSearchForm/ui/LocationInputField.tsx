@@ -149,8 +149,8 @@ interface Props {
 }
 
 export const LocationInputField: FC<Props> = ({
-  placeholder = T['HeroSearchForm']['Location'],
-  description = T['HeroSearchForm']['Where are you going?'],
+  placeholder = 'Chọn tỉnh/thành phố',
+  description = 'Bạn muốn tìm gara ở đâu?',
   className = 'flex-1',
   inputName = 'location',
   initSuggests = demoInitSuggests,
@@ -160,7 +160,11 @@ export const LocationInputField: FC<Props> = ({
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [showPopover, setShowPopover] = useState(false)
-  const [selected, setSelected] = useState<Suggest | null>(null)
+  const [selected, setSelected] = useState<Suggest | null>({
+    id: '2',
+    name: 'TP. Hồ Chí Minh',
+    icon: EiffelTowerIcon,
+  })
 
   useEffect(() => {
     const _inputFocusTimeOut = setTimeout(() => {
@@ -173,21 +177,21 @@ export const LocationInputField: FC<Props> = ({
     }
   }, [showPopover])
 
-  // for memoization of the close function
+  // để tối ưu hóa function đóng popover
   const closePopover = useCallback(() => {
     setShowPopover(false)
   }, [])
 
-  //  a custom hook that listens for clicks outside the container
+  //  custom hook lắng nghe click bên ngoài container
   useInteractOutside(containerRef, closePopover)
 
   const handleInputChange = useCallback(
     _.debounce((e: React.ChangeEvent<HTMLInputElement>) => {
       setShowPopover(true)
-      // If the input is empty, Combobox will automatically setSelected
+      // Nếu input trống, Combobox sẽ tự động setSelected
       if (e.target.value) {
         setSelected({
-          id: Date.now().toString(), // Generate a unique id for the selected item
+          id: Date.now().toString(), // Tạo id duy nhất cho item được chọn
           name: e.target.value,
         })
       }
@@ -235,7 +239,7 @@ export const LocationInputField: FC<Props> = ({
           <div className="grow">
             <Headless.ComboboxInput
               ref={inputRef}
-              aria-label="Search for a location"
+              aria-label="Tìm kiếm địa điểm"
               className={clsx(styles.input.base, styles.input[fieldStyle])}
               name={inputName}
               placeholder={placeholder}
