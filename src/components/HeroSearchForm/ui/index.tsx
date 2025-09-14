@@ -5,6 +5,7 @@ import { GuestNumberField } from './GuestNumberField'
 import { LocationInputField } from './LocationInputField'
 import { PriceRangeInputField } from './PriceRangeInputField'
 import { PropertyTypeSelectField } from './PropertyTypeSelectField'
+import { ServiceInputField } from './ServiceInputField'
 import { VerticalDividerLine } from './VerticalDividerLine'
 
 export {
@@ -15,5 +16,6 @@ export {
   LocationInputField,
   PriceRangeInputField,
   PropertyTypeSelectField,
+  ServiceInputField,
   VerticalDividerLine,
 }

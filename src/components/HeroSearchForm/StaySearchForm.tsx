@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import Form from 'next/form'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { ButtonSubmit, DateRangeField, GuestNumberField, LocationInputField, VerticalDividerLine } from './ui'
+import { ButtonSubmit, DateRangeField, GuestNumberField, LocationInputField, ServiceInputField, VerticalDividerLine } from './ui'
 
 interface Props {
   className?: string
@@ -24,11 +24,21 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
     console.log('Form submitted', formDataEntries)
     // You can also redirect or perform other actions based on the form data
 
-    // example: add location to the URL
+    // example: add location and service to the URL
     const location = formDataEntries['location'] as string
-    let url = '/stay-categories/all'
+    const service = formDataEntries['service'] as string
+    let url = '/garage-search'
+    const params = new URLSearchParams()
+    
     if (location) {
-      url = url + `?location=${encodeURIComponent(location)}`
+      params.append('location', location)
+    }
+    if (service) {
+      params.append('service', service)
+    }
+    
+    if (params.toString()) {
+      url = url + `?${params.toString()}`
     }
     router.push(url)
   }
@@ -43,9 +53,9 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
       )}
       action={handleFormSubmit}
     >
-      <LocationInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle}  isShowInitSuggests={false}/>
-      <VerticalDividerLine />
       <LocationInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle} />
+      <VerticalDividerLine />
+      <ServiceInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle} />
       <VerticalDividerLine />
       <DateRangeField
         className="hero-search-form__field-before hero-search-form__field-after flex-4/12"
