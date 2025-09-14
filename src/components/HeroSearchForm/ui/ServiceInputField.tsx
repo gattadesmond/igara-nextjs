@@ -113,6 +113,7 @@ interface Props {
   inputName?: string
   services?: Service[]
   fieldStyle: 'default' | 'small'
+  clearDataButtonClassName?: string
 }
 
 export const ServiceInputField: FC<Props> = ({
@@ -122,6 +123,7 @@ export const ServiceInputField: FC<Props> = ({
   inputName = 'service',
   services = demoServices,
   fieldStyle = 'default',
+  clearDataButtonClassName
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -220,7 +222,7 @@ export const ServiceInputField: FC<Props> = ({
             </div>
 
             <ClearDataButton
-              className={clsx(!selected?.id && 'sr-only')}
+              className={clsx(!selected?.id && 'sr-only', clearDataButtonClassName)}
               onClick={() => {
                 setSelected({ id: '', name: '' })
                 setQuery('')

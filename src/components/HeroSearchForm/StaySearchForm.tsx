@@ -51,7 +51,7 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
     >
       <LocationInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle} />
       <VerticalDividerLine />
-      <ServiceInputField className="hero-search-form__field-before flex-5/12" fieldStyle={formStyle} />
+      <ServiceInputField className="hero-search-form__field-before flex-5/12" fieldStyle={formStyle} clearDataButtonClassName={clsx(formStyle === 'small' && 'sm:end-18', formStyle === 'default' && 'sm:end-22')} />
     
 
       <ButtonSubmit fieldStyle={formStyle} className="z-10" />
