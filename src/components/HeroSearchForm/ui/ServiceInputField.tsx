@@ -4,7 +4,14 @@ import { useInteractOutside } from '@/hooks/useInteractOutside'
 import { Divider } from '@/shared/divider'
 import * as Headless from '@headlessui/react'
 import { WrenchScrewdriverIcon } from '@heroicons/react/24/outline'
-import { RepairIcon, Location01Icon } from '@hugeicons/core-free-icons'
+import { 
+  RepairIcon, 
+  Location01Icon,
+  CarIcon,
+  ElectricHomeIcon,
+  GearsIcon,
+  StreeringWheelIcon
+} from '@hugeicons/core-free-icons'
 import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
 import clsx from 'clsx'
 import _ from 'lodash'
@@ -21,7 +28,7 @@ const demoServices: Service[] = [
   {
     id: '1',
     name: 'Bảo dưỡng định kỳ',
-    icon: RepairIcon,
+    icon: CarIcon,
   },
   {
     id: '2',
@@ -31,7 +38,7 @@ const demoServices: Service[] = [
   {
     id: '3',
     name: 'Thay lốp xe',
-    icon: RepairIcon,
+    icon: CarIcon,
   },
   {
     id: '4',
@@ -46,37 +53,37 @@ const demoServices: Service[] = [
   {
     id: '6',
     name: 'Sửa động cơ',
-    icon: RepairIcon,
+    icon: CarIcon,
   },
   {
     id: '7',
     name: 'Sửa điều hòa',
-    icon: RepairIcon,
+    icon: ElectricHomeIcon,
   },
   {
     id: '8',
     name: 'Sửa điện',
-    icon: RepairIcon,
+    icon: ElectricHomeIcon,
   },
   {
     id: '9',
     name: 'Sửa hộp số',
-    icon: RepairIcon,
+    icon: GearsIcon,
   },
   {
     id: '10',
     name: 'Sửa gầm xe',
-    icon: RepairIcon,
+    icon: CarIcon,
   },
   {
     id: '11',
     name: 'Sửa hệ thống lái',
-    icon: RepairIcon,
+    icon: StreeringWheelIcon,
   },
   {
     id: '12',
     name: 'Sửa hệ thống treo',
-    icon: RepairIcon,
+    icon: CarIcon,
   },
 ]
 
