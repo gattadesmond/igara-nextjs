@@ -14,11 +14,7 @@ interface Props {
 export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
   const router = useRouter()
 
-  // Prefetch the stay categories page to improve performance
-  useEffect(() => {
-    router.prefetch('/stay-categories/all')
-  }, [router])
-
+  
   const handleFormSubmit = (formData: FormData) => {
     const formDataEntries = Object.fromEntries(formData.entries())
     console.log('Form submitted', formDataEntries)
@@ -27,7 +23,7 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
     // example: add location and service to the URL
     const location = formDataEntries['location'] as string
     const service = formDataEntries['service'] as string
-    let url = '/garage-search'
+    let url = '/garage/ho-chi-minh'
     const params = new URLSearchParams()
     
     if (location) {
@@ -55,14 +51,8 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
     >
       <LocationInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle} />
       <VerticalDividerLine />
-      <ServiceInputField className="hero-search-form__field-after flex-5/12" fieldStyle={formStyle} />
-      <VerticalDividerLine />
+      <ServiceInputField className="hero-search-form__field-before flex-5/12" fieldStyle={formStyle} />
     
-      <GuestNumberField
-        className="hero-search-form__field-before flex-4/12"
-        clearDataButtonClassName={clsx(formStyle === 'small' && 'sm:end-18', formStyle === 'default' && 'sm:end-22')}
-        fieldStyle={formStyle}
-      />
 
       <ButtonSubmit fieldStyle={formStyle} className="z-10" />
     </Form>
