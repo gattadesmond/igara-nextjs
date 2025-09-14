@@ -20,6 +20,7 @@ import ButtonPrimary from '@/shared/ButtonPrimary'
 import { Divider } from '@/shared/divider'
 import HeadingWithSub from '@/shared/Heading'
 import { Metadata } from 'next'
+import {StaySearchForm} from '@/components/HeroSearchForm/StaySearchForm'
 
 export const metadata: Metadata = {
   title: 'iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín',
@@ -40,7 +41,7 @@ async function Page() {
           heading="iGara - Tìm Gara Ô Tô Gần Đây – Đặt Lịch Ngay "
           image={heroImage}
           imageAlt="hero"
-          searchForm={<HeroSearchForm initTab="Stays" />}
+          searchForm={<StaySearchForm formStyle="default" />}
           description={
             <>
               <p className="max-w-xl text-base text-neutral-500 sm:text-xl dark:text-neutral-400">
