@@ -39,7 +39,11 @@ async function Page() {
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
         <HeroSectionWithSearchForm1
           heading="iGara - Tìm Gara Ô Tô Gần Đây – Đặt Lịch Ngay "
-          image={heroImage}
+          image={{
+            src: "/images/igara-poster.jpg",
+            width: 1000,
+            height: 1000,
+          }}
           imageAlt="hero"
           searchForm={<StaySearchForm formStyle="default" />}
           description={

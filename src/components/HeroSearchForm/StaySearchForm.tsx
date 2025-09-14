@@ -17,7 +17,6 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
   
   const handleFormSubmit = (formData: FormData) => {
     const formDataEntries = Object.fromEntries(formData.entries())
-    console.log('Form submitted', formDataEntries)
     // You can also redirect or perform other actions based on the form data
 
     // example: add location and service to the URL
