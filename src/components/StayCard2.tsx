@@ -10,6 +10,8 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Star, MapPin, Clock, Phone } from 'lucide-react';
+import { cn } from '@/utils/cn'
 
 interface StayCard2Props {
   className?: string
@@ -22,6 +24,9 @@ const StayCard2: FC<StayCard2Props> = ({ size = 'default', className = '', data 
     galleryImgs,
     listingCategory,
     address,
+    status,
+    openTime,
+    city,
     title,
     bedrooms,
     handle: listingHandle,
@@ -34,7 +39,7 @@ const StayCard2: FC<StayCard2Props> = ({ size = 'default', className = '', data 
     id,
   } = data
 
-  const listingHref = `/stay-listings/${listingHandle}`
+  const listingHref = `/garage/${listingHandle}`
 
   const renderSliderGallery = () => {
     return (
@@ -50,40 +55,44 @@ const StayCard2: FC<StayCard2Props> = ({ size = 'default', className = '', data 
     return (
       <div className={clsx(size === 'default' ? 'mt-3 gap-y-3' : 'mt-2 gap-y-2', 'flex flex-col')}>
         <div className="flex flex-col gap-y-2">
-          <span className="text-sm text-neutral-500 dark:text-neutral-400">
-            {listingCategory} · {bedrooms} beds
-          </span>
+
+
           <div className="flex items-center gap-x-2">
             {isAds && <Badge color="green">ADS</Badge>}
             <h2 className={`text-base font-semibold text-neutral-900 capitalize dark:text-white`}>
               <span className="line-clamp-1">{title}</span>
             </h2>
           </div>
-          <div className="flex items-center gap-x-1.5 text-sm text-neutral-500 dark:text-neutral-400">
+          <div className="flex items-start gap-x-1.5 text-sm text-neutral-500 dark:text-neutral-400">
             {size === 'default' && (
               <HugeiconsIcon
-                className="mb-0.5"
+                className="mt-0.5"
                 icon={Location06Icon}
                 size={16}
                 color="currentColor"
                 strokeWidth={1.5}
               />
             )}
-            <span>{address}</span>
+            <div><div className='line-clamp-1'>{address}</div><div>{city}</div></div>
           </div>
         </div>
         <div className="w-14 border-b border-neutral-100 dark:border-neutral-800"></div>
         <div className="flex items-center justify-between gap-2">
           <div>
-            <span className="text-base font-semibold"> {price}</span>
-            {size === 'default' && (
-              <>
-                <span className="mx-1 text-sm font-light text-neutral-400 dark:text-neutral-500">/</span>
-                <span className="text-sm font-normal text-neutral-500 dark:text-neutral-400">
-                  {T['common']['night']}
-                </span>
-              </>
-            )}
+            <div className="flex items-center gap-2">
+              <div
+                className={cn('text-sm font-semibold', status === 'open' ? 'text-green-600  ' : ' text-neutral-500')}
+              >
+                {status === 'open' ? 'Đang mở' : 'Đóng'}
+              </div>
+
+              <div className="w-[2px] h-[2px] bg-neutral-400 rounded-full"></div>
+
+              <div className="flex items-center gap-1 text-sm text-neutral-500">
+                <Clock className="w-4 h-4 text-neutral-400" />
+                <span>{openTime}</span>
+              </div>
+            </div>
           </div>
           {!!reviewStart && <StartRating reviewCount={reviewCount} point={reviewStart} />}
         </div>
