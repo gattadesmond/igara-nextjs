@@ -15,13 +15,28 @@ import {
   Wifi01Icon,
 } from '@/components/Icons'
 import { getListingReviews } from '@/data/data'
-import { getStayListingByHandle } from '@/data/listings'
+import { getStayListingByHandle, getStayListings } from '@/data/listings'
 import ButtonPrimary from '@/shared/ButtonPrimary'
 import ButtonSecondary from '@/shared/ButtonSecondary'
 import { DescriptionDetails, DescriptionList, DescriptionTerm } from '@/shared/description-list'
 import { Divider } from '@/shared/divider'
 import T from '@/utils/getT'
-import { UsersIcon } from '@heroicons/react/24/outline'
+import { 
+  UsersIcon, 
+  PhoneIcon, 
+  ClockIcon, 
+  MapPinIcon,
+  StarIcon,
+  CheckCircleIcon,
+  XCircleIcon,
+  CalendarIcon,
+  WrenchScrewdriverIcon,
+  ShieldCheckIcon,
+  TruckIcon,
+  BuildingOfficeIcon,
+  HeartIcon,
+  ChatBubbleLeftRightIcon
+} from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Form from 'next/form'
 import { redirect } from 'next/navigation'
@@ -36,6 +51,7 @@ import SectionHost from '../../components/SectionHost'
 import SectionListingReviews from '../../components/SectionListingReviews'
 import SectionMap from '../../components/SectionMap'
 import Breadcrumb from '@/components/Breadcrumb'
+import StayCard2 from '@/components/StayCard2'
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params
@@ -64,6 +80,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
   }
   const {
     address,
+    city,
     bathrooms,
     bedrooms,
     date,
@@ -82,8 +99,12 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     title,
     host,
     beds,
+    openTime,
+    status,
   } = listing
   const reviews = (await getListingReviews(handle)).slice(0, 3) // Fetching only the first 3 reviews for display
+  const allListings = await getStayListings()
+  const nearbyGarages = allListings.filter(g => g.id !== listing.id).slice(0, 4) // Get 4 nearby garages
 
   // Server action to handle form submission
   const handleSubmitForm = async (formData: FormData) => {
@@ -94,179 +115,338 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     // For example, you can redirect to a checkout page or process the booking
     redirect('/checkout')
   }
-  //
 
-  const renderSectionHeader = () => {
-    return (
-      <SectionHeader
-        address={address}
-        host={host}
-        listingCategory={listingCategory}
-        reviewCount={reviewCount}
-        reviewStart={reviewStart}
-        title={title}
-      >
-        <div className="flex items-center gap-x-3">
-          <UsersIcon className="mb-0.5 size-6" />
-          <span>{maxGuests} guests</span>
-        </div>
-        <div className="flex items-center gap-x-3">
-          <BedSingle01Icon className="mb-0.5 size-6" />
-          <span>{beds} beds</span>
-        </div>
-        <div className="flex items-center gap-x-3">
-          <Bathtub02Icon className="mb-0.5 size-6" />
-          <span>{bathrooms} baths</span>
-        </div>
-        <div className="flex items-center gap-x-3">
-          <MeetingRoomIcon className="mb-0.5 size-6" />
-          <span>{bedrooms} bedrooms</span>
-        </div>
-      </SectionHeader>
-    )
+  // Mock data for garage details
+  const garageDetails = {
+    phone: '0901 234 567',
+    operatingYears: 15,
+    specialties: ['Toyota', 'Honda', 'Mazda', 'Hyundai'],
+    certifications: ['Bosch Service', 'Toyota Authorized', 'ASE Certified'],
+    services: [
+      { name: 'Sửa chữa động cơ', icon: WrenchScrewdriverIcon, description: 'Chẩn đoán và sửa chữa động cơ chuyên nghiệp' },
+      { name: 'Bảo dưỡng định kỳ', icon: ClockIcon, description: 'Dịch vụ bảo dưỡng theo lịch trình nhà sản xuất' },
+      { name: 'Sửa phanh', icon: ShieldCheckIcon, description: 'Kiểm tra và thay thế hệ thống phanh' },
+      { name: 'Cứu hộ 24/7', icon: TruckIcon, description: 'Dịch vụ cứu hộ khẩn cấp 24 giờ' },
+    ],
+    facilities: [
+      { name: '3 cầu nâng', icon: BuildingOfficeIcon },
+      { name: 'Phòng chờ có điều hòa', icon: MeetingRoomIcon },
+      { name: 'WiFi miễn phí', icon: Wifi01Icon },
+      { name: 'Nước uống miễn phí', icon: WaterEnergyIcon },
+      { name: 'Cứu hộ 24/7', icon: TruckIcon },
+    ],
+    priceList: [
+      { service: 'Thay dầu động cơ', price: '150.000đ' },
+      { service: 'Thay lọc gió', price: '80.000đ' },
+      { service: 'Thay lọc nhớt', price: '50.000đ' },
+      { service: 'Kiểm tra phanh', price: '100.000đ' },
+      { service: 'Cân chỉnh thước lái', price: '200.000đ' },
+    ],
+    isWeekendOpen: true,
+    warranty: 'Bảo hành 12 tháng cho tất cả dịch vụ',
+    sundayOpen: true,
   }
 
-  const renderSectionInfo = () => {
-    const roomRates = [
-      {
-        name: 'monday-thursday',
-        title: 'Monday - Thursday',
-        price: '$199',
-      },
-      {
-        name: 'friday-sunday',
-        title: 'Friday - Sunday',
-        price: '$219',
-      },
-      {
-        name: 'rent-by-month',
-        title: 'Rent by month',
-        price: '-8.34 %',
-      },
-      {
-        name: 'minimum-nights',
-        title: 'Minimum number of nights',
-        price: '1 night',
-      },
-      {
-        name: 'maximum-nights',
-        title: 'Max number of nights',
-        price: '90 nights',
-      },
-    ]
+  const renderGarageHeader = () => {
     return (
       <div className="listingSection__wrap">
-       
-        <SectionHeading>Stay information</SectionHeading>
-        <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
-          <span>
-            Providing lake views, The Symphony 9 Tam Coc in Ninh Binh provides accommodation, an outdoor swimming pool,
-            a bar, a shared lounge, a garden and barbecue facilities. Complimentary WiFi is provided.
-          </span>
-          <br />
-          <br />
-          <span>There is a private bathroom with bidet in all units, along with a hairdryer and free toiletries.</span>
-          <br /> <br />
-          <span>
-            The Symphony 9 Tam Coc offers a terrace. Both a bicycle rental service and a car rental service are
-            available at the accommodation, while cycling can be enjoyed nearby.
-          </span>
-        </div>
+        <div className="flex flex-col gap-6">
+          {/* Tên gara - H1 */}
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{title}</h1>
+          
+          {/* Thông tin cơ bản */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="flex items-center gap-3">
+              <MapPinIcon className="h-5 w-5 text-neutral-500" />
+              <div>
+                <p className="text-sm text-neutral-500">Địa chỉ</p>
+                <p className="font-medium">{address}, {city}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <PhoneIcon className="h-5 w-5 text-neutral-500" />
+              <div>
+                <p className="text-sm text-neutral-500">Số điện thoại</p>
+                <p className="font-medium">{garageDetails.phone}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <ClockIcon className="h-5 w-5 text-neutral-500" />
+              <div>
+                <p className="text-sm text-neutral-500">Thời gian mở cửa</p>
+                <p className="font-medium">{openTime}</p>
+              </div>
+            </div>
+          </div>
 
-        <Divider className="w-14!" />
+          {/* Tình trạng mở/đóng cửa */}
+          {/* <div className="flex items-center gap-3">
+            {status === 'open' ? (
+              <CheckCircleIcon className="h-6 w-6 text-green-500" />
+            ) : (
+              <XCircleIcon className="h-6 w-6 text-red-500" />
+            )}
+            <span className={`font-semibold ${status === 'open' ? 'text-green-600' : 'text-red-600'}`}>
+              {status === 'open' ? 'Đang mở cửa' : 'Đã đóng cửa'}
+            </span>
+          </div> */}
 
-        <div>
-          <SectionHeading>Room Rates </SectionHeading>
-          <SectionSubheading>Prices may increase on weekends or holidays</SectionSubheading>
+          {/* Đánh giá */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
+              <span className="font-semibold">{reviewStart}</span>
+              <span className="text-neutral-500">({reviewCount} đánh giá)</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <HeartIcon className="h-5 w-5 text-red-500" />
+              <span className="text-neutral-500">Đã lưu</span>
+            </div>
+          </div>
         </div>
-        <DescriptionList>
-          {roomRates.map((item) => (
-            <Fragment key={item.name}>
-              <DescriptionTerm>{item.title}</DescriptionTerm>
-              <DescriptionDetails>{item.price}</DescriptionDetails>
-            </Fragment>
-          ))}
-        </DescriptionList>
       </div>
     )
   }
 
-  const renderSectionAmenities = () => {
-    const Amenities_demos = [
-      { name: 'Fast wifi', icon: Wifi01Icon },
-      { name: 'Bathtub', icon: Bathtub02Icon },
-      { name: 'Hair dryer', icon: HairDryerIcon },
-      { name: 'Sound system', icon: Speaker01Icon },
-      { name: 'Shampoo', icon: ShampooIcon },
-      { name: 'Body soap', icon: BodySoapIcon },
-      { name: 'Water Energy ', icon: WaterEnergyIcon },
-      { name: 'Water Polo', icon: WaterPoloIcon },
-      { name: 'Cable Car', icon: CableCarIcon },
-      { name: 'Tv Smart', icon: TvSmartIcon },
-      { name: 'Cctv Camera', icon: CctvCameraIcon },
-      { name: 'Virtual Reality Vr', icon: VirtualRealityVr01Icon },
-    ]
+  const renderGarageDescription = () => {
+    return (
+      <div className="listingSection__wrap">
+        <SectionHeading>Giới thiệu về gara</SectionHeading>
+        <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
+          <p>
+            {title} là một trong những gara sửa chữa ô tô uy tín nhất tại {city} với hơn {garageDetails.operatingYears} năm kinh nghiệm 
+            trong lĩnh vực bảo dưỡng và sửa chữa xe hơi. Chúng tôi chuyên sửa chữa các dòng xe {garageDetails.specialties.join(', ')} 
+            với đội ngũ kỹ thuật viên được đào tạo chuyên nghiệp và trang thiết bị hiện đại.
+          </p>
+          <br />
+          <p>
+            <strong>Điểm mạnh của chúng tôi:</strong> Sử dụng phụ tùng chính hãng, quy trình bảo dưỡng chuẩn nhà sản xuất, 
+            bảo hành dài hạn và dịch vụ khách hàng tận tình. Gara được trang bị {garageDetails.facilities.length} cầu nâng 
+            hiện đại, phòng chờ tiện nghi và dịch vụ cứu hộ 24/7.
+          </p>
+          <br />
+          <p>
+            Chúng tôi cam kết mang đến cho khách hàng dịch vụ chất lượng cao với giá cả hợp lý. 
+            {garageDetails.warranty} và luôn sẵn sàng hỗ trợ khách hàng mọi lúc, mọi nơi.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
+  const renderCertifications = () => {
+    return (
+      <div className="listingSection__wrap">
+        <SectionHeading>Chứng chỉ & Đối tác</SectionHeading>
+        <SectionSubheading>Các chứng chỉ và đối tác thương hiệu uy tín</SectionSubheading>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {garageDetails.certifications.map((cert, index) => (
+            <div key={index} className="flex items-center gap-3 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+              <ShieldCheckIcon className="h-8 w-8 text-blue-500" />
+              <span className="font-medium">{cert}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  const renderServices = () => {
+    return (
+      <div className="listingSection__wrap">
+        <SectionHeading>Dịch vụ chính</SectionHeading>
+        <SectionSubheading>Các dịch vụ sửa chữa và bảo dưỡng chuyên nghiệp</SectionSubheading>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {garageDetails.services.map((service, index) => (
+            <div key={index} className="flex items-start gap-4 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+              <service.icon className="h-8 w-8 text-blue-500 mt-1" />
+              <div>
+                <h3 className="font-semibold text-lg mb-2">{service.name}</h3>
+                <p className="text-neutral-600 dark:text-neutral-400">{service.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  const renderPriceList = () => {
+    return (
+      <div className="listingSection__wrap">
+        <SectionHeading>Bảng giá tham khảo</SectionHeading>
+        <SectionSubheading>Giá dịch vụ cơ bản (có thể thay đổi tùy theo tình trạng xe)</SectionSubheading>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-neutral-200 dark:border-neutral-700">
+            <thead>
+              <tr className="bg-neutral-50 dark:bg-neutral-800">
+                <th className="border border-neutral-200 dark:border-neutral-700 px-4 py-3 text-left font-semibold">Dịch vụ</th>
+                <th className="border border-neutral-200 dark:border-neutral-700 px-4 py-3 text-right font-semibold">Giá</th>
+              </tr>
+            </thead>
+            <tbody>
+              {garageDetails.priceList.map((item, index) => (
+                <tr key={index} className="hover:bg-neutral-50 dark:hover:bg-neutral-800">
+                  <td className="border border-neutral-200 dark:border-neutral-700 px-4 py-3">{item.service}</td>
+                  <td className="border border-neutral-200 dark:border-neutral-700 px-4 py-3 text-right font-semibold text-green-600">{item.price}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    )
+  }
+
+  const renderFacilities = () => {
     return (
       <div className="listingSection__wrap">
         <div>
-          <SectionHeading>Amenities</SectionHeading>
-          <SectionSubheading>About the property&apos;s amenities and services</SectionSubheading>
+          <SectionHeading>Tiện ích & Cơ sở vật chất</SectionHeading>
+          <SectionSubheading>Thông tin mở rộng về cơ sở vật chất của gara</SectionSubheading>
         </div>
         <Divider className="w-14!" />
 
-        <div className="grid grid-cols-1 gap-6 text-sm text-neutral-700 xl:grid-cols-3 dark:text-neutral-300">
-          {Amenities_demos.filter((_, i) => i < 12).map((item) => (
-            <div key={item.name} className="flex items-center gap-x-3">
-              <item.icon className="h-6 w-6" />
-              <span>{item.name}</span>
+        <div className="grid grid-cols-1 gap-6 text-sm text-neutral-700 md:grid-cols-2 xl:grid-cols-3 dark:text-neutral-300">
+          {garageDetails.facilities.map((facility, index) => (
+            <div key={index} className="flex items-center gap-x-3">
+              <facility.icon className="h-6 w-6 text-blue-500" />
+              <span>{facility.name}</span>
             </div>
           ))}
         </div>
 
-        {/* ----- */}
-        <div className="w-14 border-b border-neutral-200"></div>
-        <div>
-          <ButtonSecondary>View more 20 amenities</ButtonSecondary>
+        {/* Badge mở cửa cuối tuần */}
+        {garageDetails.isWeekendOpen && (
+          <div className="mt-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-800 rounded-full">
+              <CheckCircleIcon className="h-5 w-5" />
+              <span className="font-semibold">Mở cửa cuối tuần</span>
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  const renderFAQ = () => {
+    const faqs = [
+      {
+        question: 'Có mở Chủ nhật không?',
+        answer: garageDetails.sundayOpen ? 'Có, chúng tôi mở cửa cả Chủ nhật từ 8:00 - 17:00' : 'Không, chúng tôi đóng cửa vào Chủ nhật'
+      },
+      {
+        question: 'Nhận sửa dòng xe nào?',
+        answer: `Chúng tôi chuyên sửa chữa các dòng xe: ${garageDetails.specialties.join(', ')} và nhiều thương hiệu khác`
+      },
+      {
+        question: 'Có bảo hành dịch vụ không?',
+        answer: garageDetails.warranty
+      }
+    ]
+
+    return (
+      <div className="listingSection__wrap">
+        <SectionHeading>Câu hỏi thường gặp</SectionHeading>
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div key={index} className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+              <h3 className="font-semibold text-lg mb-2">{faq.question}</h3>
+              <p className="text-neutral-600 dark:text-neutral-400">{faq.answer}</p>
+            </div>
+          ))}
         </div>
       </div>
     )
   }
 
-  const renderSidebarPriceAndForm = () => {
+  const renderIGaraIntro = () => {
+    return (
+      <div className="listingSection__wrap bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+        <SectionHeading>Giới thiệu CRM iGara</SectionHeading>
+        <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
+          <p>
+            Gara này sử dụng hệ thống quản lý CRM iGara - một giải pháp công nghệ tiên tiến giúp quản lý 
+            khách hàng, lịch hẹn và dịch vụ một cách chuyên nghiệp. Với iGara, khách hàng có thể:
+          </p>
+          <ul className="mt-4 space-y-2 list-disc list-inside">
+            <li>Đặt lịch hẹn trực tuyến 24/7</li>
+            <li>Theo dõi lịch sử bảo dưỡng xe</li>
+            <li>Nhận thông báo nhắc nhở bảo dưỡng định kỳ</li>
+            <li>Xem báo cáo chi tiết về tình trạng xe</li>
+            <li>Thanh toán trực tuyến an toàn</li>
+          </ul>
+        </div>
+      </div>
+    )
+  }
+
+  const renderSidebarBooking = () => {
     return (
       <div className="listingSection__wrap sm:shadow-xl">
-        {/* PRICE */}
-        <div className="flex items-end text-2xl font-semibold sm:text-3xl">
-          <span className="text-neutral-300 line-through">$350</span>
-          <span className="mx-2">{price}</span>
-          <div className="pb-1">
-            <span className="text-base font-normal text-neutral-500 dark:text-neutral-400">/night</span>
+        {/* Status */}
+        <div className="flex items-center gap-3 mb-6">
+          {status === 'open' ? (
+            <CheckCircleIcon className="h-6 w-6 text-green-500" />
+          ) : (
+            <XCircleIcon className="h-6 w-6 text-red-500" />
+          )}
+          <span className={`font-semibold ${status === 'open' ? 'text-green-600' : 'text-red-600'}`}>
+            {status === 'open' ? 'Đang mở cửa' : 'Đã đóng cửa'}
+          </span>
+        </div>
+
+        {/* Contact Info */}
+        <div className="space-y-4 mb-6">
+          <div className="flex items-center gap-3">
+            <PhoneIcon className="h-5 w-5 text-neutral-500" />
+            <div>
+              <p className="text-sm text-neutral-500">Hotline</p>
+              <p className="font-semibold">{garageDetails.phone}</p>
+            </div>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <ClockIcon className="h-5 w-5 text-neutral-500" />
+            <div>
+              <p className="text-sm text-neutral-500">Giờ mở cửa</p>
+              <p className="font-semibold">{openTime}</p>
+            </div>
           </div>
         </div>
 
-        {/* FORM */}
-        <Form
-          action={handleSubmitForm}
-          className="flex flex-col rounded-3xl border border-neutral-200 dark:border-neutral-700"
-          id="booking-form"
-        >
-          <DatesRangeInputPopover className="z-11 flex-1" />
-          <div className="w-full border-b border-neutral-200 dark:border-neutral-700"></div>
-          <GuestsInputPopover className="flex-1" />
-        </Form>
+        {/* Booking Buttons */}
+        <div className="space-y-3">
+          <ButtonPrimary className="w-full">
+            <CalendarIcon className="h-5 w-5 mr-2" />
+            Đặt lịch hẹn
+          </ButtonPrimary>
+          
+          <ButtonSecondary className="w-full">
+            <PhoneIcon className="h-5 w-5 mr-2" />
+            Gọi ngay
+          </ButtonSecondary>
+        </div>
 
-        <DescriptionList>
-          <DescriptionTerm>$19.00 x 3 day</DescriptionTerm>
-          <DescriptionDetails className="sm:text-right">$57.00</DescriptionDetails>
-          <DescriptionTerm className="font-semibold text-neutral-900">Total</DescriptionTerm>
-          <DescriptionDetails className="font-semibold sm:text-right">$57.00</DescriptionDetails>
-        </DescriptionList>
-
-        {/* SUBMIT */}
-        <ButtonPrimary form="booking-form" type="submit" className="w-full">
-          {T['common']['Reserve']}
-        </ButtonPrimary>
+        {/* Quick Info */}
+        <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between">
+              <span className="text-neutral-500">Đánh giá:</span>
+              <span className="font-semibold">{reviewStart}/5 ({reviewCount} đánh giá)</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-neutral-500">Khoảng cách:</span>
+              <span className="font-semibold">{price}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-neutral-500">Năm hoạt động:</span>
+              <span className="font-semibold">{garageDetails.operatingYears} năm</span>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -275,44 +455,78 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     <div>
       {/*  HEADER */}
       <div className="py-5">
-          <Breadcrumb
-            items={[
-              { label: 'Garage', href: '/garage' },
-              { label: title },
-            ]}
-          />
-        </div>
+        <Breadcrumb
+          items={[
+            { label: 'Garage', href: '/garage' },
+            { label: title },
+          ]}
+        />
+      </div>
+      
+      {/* Album ảnh */}
       <HeaderGallery images={galleryImgs} />
 
       {/* MAIN */}
       <main className="relative z-[1] mt-10 flex flex-col gap-8 lg:flex-row xl:gap-10">
         {/* CONTENT */}
         <div className="flex w-full flex-col gap-y-8 lg:w-3/5 xl:w-[64%] xl:gap-y-10">
-          {renderSectionHeader()}
-          {renderSectionInfo()}
-          {renderSectionAmenities()}
-          <SectionDateRange />
+          {renderGarageHeader()}
+          {renderGarageDescription()}
+          {renderCertifications()}
+          {renderServices()}
+          {renderPriceList()}
+          {renderFacilities()}
+          {renderFAQ()}
+          {renderIGaraIntro()}
         </div>
 
         {/* SIDEBAR */}
         <div className="grow">
-          <div className="sticky top-5">{renderSidebarPriceAndForm()}</div>
+          <div className="sticky top-5">{renderSidebarBooking()}</div>
         </div>
       </main>
 
       <Divider className="my-16" />
 
+      {/* Reviews Section */}
       <div className="flex flex-col gap-y-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-          <div className="w-full lg:w-4/9 xl:w-1/3">
-            <SectionHost {...host} />
-          </div>
           <div className="w-full lg:w-2/3">
-            <SectionListingReviews reviewCount={reviewCount} reviewStart={reviewStart} reviews={reviews} />
+            <div className="listingSection__wrap">
+              <div className="flex items-center justify-between mb-6">
+                <SectionHeading>Đánh giá khách hàng</SectionHeading>
+                <div className="flex gap-2">
+                  <ButtonSecondary>Mới nhất</ButtonSecondary>
+                  <ButtonSecondary>Đánh giá cao nhất</ButtonSecondary>
+                </div>
+              </div>
+              <SectionListingReviews reviewCount={reviewCount} reviewStart={reviewStart} reviews={reviews} />
+              <div className="mt-6">
+                <ButtonPrimary>
+                  <ChatBubbleLeftRightIcon className="h-5 w-5 mr-2" />
+                  Viết đánh giá
+                </ButtonPrimary>
+              </div>
+            </div>
+          </div>
+          <div className="w-full lg:w-1/3">
+            <SectionHost {...host} />
           </div>
         </div>
 
+        {/* Google Map */}
         <SectionMap />
+
+        {/* Nearby Garages */}
+        <div className="listingSection__wrap">
+          <SectionHeading>Gara cùng khu vực</SectionHeading>
+          <SectionSubheading>Khám phá các gara khác gần đây</SectionSubheading>
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {nearbyGarages.map((garage) => (
+              <StayCard2 key={garage.id} data={garage} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -177,7 +177,7 @@ const HeaderGalleryGrid1 = ({
       <div className="absolute bottom-3 left-3">
         <Button color="light" onClick={() => handleOpenDialog()}>
           <Squares2X2Icon className="h-5 w-5" />
-          <span>{T['common']['Show all photos']}</span>
+          <span>Xem tất cả hình</span>
         </Button>
       </div>
     </header>
@@ -223,7 +223,7 @@ const HeaderGalleryGrid2 = ({
       <div className="absolute bottom-3 left-3">
         <Button color="light" onClick={() => handleOpenDialog()}>
           <Squares2X2Icon className="h-5 w-5" />
-          <span>{T['common']['Show all photos']}</span>
+          <span>Xem tất cả hình</span>
         </Button>
       </div>
     </header>
@@ -294,7 +294,7 @@ const HeaderGalleryGrid3 = ({
       <div className="absolute bottom-3 left-3">
         <Button color="light" onClick={() => handleOpenDialog()}>
           <Squares2X2Icon className="h-5 w-5" />
-          <span>{T['common']['Show all photos']}</span>
+          <span>Xem tất cả hình</span>
         </Button>
       </div>
     </header>
@@ -365,7 +365,7 @@ const HeaderGalleryGrid4 = ({
       <div className="absolute bottom-3 left-3">
         <Button color="light" onClick={() => handleOpenDialog()}>
           <Squares2X2Icon className="h-5 w-5" />
-          <span>{T['common']['Show all photos']}</span>
+          <span>Xem tất cả hình</span>
         </Button>
       </div>
     </header>
