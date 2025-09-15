@@ -468,14 +468,49 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
             Gara này có thể giúp bạn chẩn đoán vấn đề, dù là tiếng động, khói hay mùi lạ mà bạn đang gặp phải.
           </p>
         </div>
+      </div>
+    )
+  }
 
+  const renderMobileToolbar = () => {
+    return (
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 shadow-lg md:hidden">
+        <div className="px-4 py-3">
+          {/* Status and Time */}
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              {status === 'open' ? (
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+              ) : (
+                <XCircleIcon className="h-5 w-5 text-red-500" />
+              )}
+              <span className={`text-sm font-medium ${status === 'open' ? 'text-green-600' : 'text-red-600'}`}>
+                {status === 'open' ? 'Đang mở cửa' : 'Đã đóng cửa'}
+              </span>
+            </div>
+            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+              16/9/2025 lúc 9:00
+            </div>
+          </div>
 
+          {/* Action Buttons */}
+          <div className="flex gap-3">
+           
+            <ButtonSecondary className="flex-1">
+              <PhoneIcon className="h-4 w-4 mr-1" />
+              Gọi
+            </ButtonSecondary>
+            <Button className="flex-1 font-bold" color='red'>
+              Đặt lịch hẹn
+            </Button>
+          </div>
+        </div>
       </div>
     )
   }
 
   return (
-    <div>
+    <div className="pb-20 md:pb-0">
       {/*  HEADER */}
       <div className="py-5">
         <Breadcrumb
@@ -509,11 +544,14 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
           </div>
         </div>
 
-        {/* SIDEBAR */}
-        <div className="grow">
+        {/* SIDEBAR - Desktop only */}
+        <div className="hidden lg:block grow">
           <div className="sticky top-5">{renderSidebarBooking()}</div>
         </div>
       </main>
+
+      {/* Mobile Toolbar */}
+      {renderMobileToolbar()}
 
       <Divider className="my-16" />
 
