@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
 import { CarBrandCarousel } from '@/components/CarBrandCarousel'
-
+import HeroSearchFormMobile from '@/components/HeroSearchFormMobile/HeroSearchFormMobile'
 interface HeroSectionProps {
   className?: string;
 }
@@ -65,7 +65,9 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
           <p className="text-center text-white/80 text-balance ">
             Nền tảng tra cứu, tìm kiếm gara ô tô uy tín với đầy đủ thông tin đi kèm với chất lượng. Tìm kiếm ngay.
           </p>
-          <StaySearchForm formStyle={'default'} />
+          <StaySearchForm formStyle={'default'} className='max-md:hidden' />
+
+          <HeroSearchFormMobile className='md:hidden' />
 
           <div className="mx-auto flex h-6 items-center">
             <div className="relative flex w-max translate-x-[15px] md:justify-self-end">
