@@ -76,7 +76,6 @@ const vietnamProvinces = [
   'Ninh Thuận',
   'Bình Phước',
   'Tây Ninh',
-  'Bình Dương',
   'Đồng Tháp',
   'Hậu Giang',
 ]
