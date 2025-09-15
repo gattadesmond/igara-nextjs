@@ -12,7 +12,7 @@ export async function getStayCategories() {
       name: 'New York, USA',
       region: 'United States',
       handle: 'new-york-usa',
-      href: '/stay-categories/new-york-usa',
+      href: '/garage/new-york-usa',
       count: 5000,
       thumbnail:
         'https://images.pexels.com/photos/64271/queen-of-liberty-statue-of-liberty-new-york-liberty-statue-64271.jpeg',
@@ -28,7 +28,7 @@ export async function getStayCategories() {
       name: 'Singapore',
       region: 'Singapore',
       handle: 'singapore',
-      href: '/stay-categories/singapore',
+      href: '/garage/singapore',
       count: 2500,
       thumbnail: 'https://images.pexels.com/photos/7740160/pexels-photo-7740160.jpeg',
       coverImage: {
@@ -43,7 +43,7 @@ export async function getStayCategories() {
       name: 'Paris, France',
       region: 'France',
       handle: 'paris-france',
-      href: '/stay-categories/paris-france',
+      href: '/garage/paris-france',
       count: 3000,
       thumbnail: 'https://images.pexels.com/photos/739407/pexels-photo-739407.jpeg',
       coverImage: {
@@ -58,7 +58,7 @@ export async function getStayCategories() {
       name: 'London, UK',
       region: 'United Kingdom',
       handle: 'london-uk',
-      href: '/stay-categories/london-uk',
+      href: '/garage/london-uk',
       count: 116288,
       thumbnail: 'https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg',
       coverImage: {
@@ -73,7 +73,7 @@ export async function getStayCategories() {
       name: 'Tokyo, Japan',
       region: 'Japan',
       handle: 'tokyo-japan',
-      href: '/stay-categories/tokyo-japan',
+      href: '/garage/tokyo-japan',
       count: 5000,
       thumbnail: 'https://images.pexels.com/photos/4151484/pexels-photo-4151484.jpeg',
       coverImage: {
@@ -88,7 +88,7 @@ export async function getStayCategories() {
       name: 'Maldives',
       region: 'Indian Ocean',
       handle: 'maldives',
-      href: '/stay-categories/maldives',
+      href: '/garage/maldives',
       count: 7500,
       thumbnail: 'https://images.pexels.com/photos/3250613/pexels-photo-3250613.jpeg',
       coverImage: {
@@ -103,7 +103,7 @@ export async function getStayCategories() {
       name: 'Roma, Italy',
       region: 'Italy',
       handle: 'roma-italy',
-      href: '/stay-categories/roma-italy',
+      href: '/garage/roma-italy',
       count: 8100,
       thumbnail: 'https://images.pexels.com/photos/7740160/pexels-photo-7740160.jpeg',
       coverImage: {
@@ -118,7 +118,7 @@ export async function getStayCategories() {
       name: 'Enjoy the great cold',
       region: 'Arctic',
       handle: 'enjoy-the-great-cold',
-      href: '/stay-categories/enjoy-the-great-cold',
+      href: '/garage/enjoy-the-great-cold',
       count: 15600,
       thumbnail: 'https://images.pexels.com/photos/5764100/pexels-photo-5764100.jpeg',
       coverImage: {
@@ -133,7 +133,7 @@ export async function getStayCategories() {
       name: 'Sleep in a floating way',
       region: 'Worldwide',
       handle: 'sleep-in-a-floating-way',
-      href: '/stay-categories/sleep-in-a-floating-way',
+      href: '/garage/sleep-in-a-floating-way',
       count: 1000,
       thumbnail: 'https://images.pexels.com/photos/2869499/pexels-photo-2869499.jpeg',
       coverImage: {
@@ -148,7 +148,7 @@ export async function getStayCategories() {
       name: "In the billionaire's house",
       region: 'Worldwide',
       handle: 'in-the-billionaires-house',
-      href: '/stay-categories/in-the-billionaires-house',
+      href: '/garage/in-the-billionaires-house',
       count: 3000,
       thumbnail: 'https://images.pexels.com/photos/7031413/pexels-photo-7031413.jpeg',
       coverImage: {
@@ -163,7 +163,7 @@ export async function getStayCategories() {
       name: 'Cool in the deep forest',
       region: 'Worldwide',
       handle: 'cool-in-the-deep-forest',
-      href: '/stay-categories/cool-in-the-deep-forest',
+      href: '/garage/cool-in-the-deep-forest',
       count: 6000,
       thumbnail: 'https://images.pexels.com/photos/247532/pexels-photo-247532.jpeg',
       coverImage: {
@@ -178,7 +178,7 @@ export async function getStayCategories() {
       name: 'Sunset in the desert',
       region: 'Worldwide',
       handle: 'sunset-in-the-desert',
-      href: '/stay-categories/sunset-in-the-desert',
+      href: '/garage/sunset-in-the-desert',
       count: 1000,
       thumbnail:
         'https://images.pexels.com/photos/32223288/pexels-photo-32223288/free-photo-of-ngoi-nha-da-d-a-trung-h-i-quy-n-ru-v-i-di-m-nh-n-mau-vang.jpeg',
@@ -200,7 +200,7 @@ export async function getStayCategoryByHandle(handle?: string) {
       id: 'stay://all',
       name: 'Explore stays',
       handle: 'all',
-      href: '/stay-categories/all',
+      href: '/garage/all',
       region: 'Worldwide',
       count: 144000,
       description: 'Explore all stays around the world',

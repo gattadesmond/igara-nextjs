@@ -25,7 +25,7 @@ const StaySearchFormMobile = () => {
     // example: add location and service to the URL
     const location = formDataEntries['location'] as string
     const service = formDataEntries['service'] as string
-    let url = '/garage/ho-chi-minh'
+    let url = '/garage'
     const params = new URLSearchParams()
     
     if (location) {

@@ -26,7 +26,7 @@ const SidebarNavigation: React.FC<Props> = ({ data, currencies, languages }) => 
 
   // Prefetch the next step to improve performance
   useEffect(() => {
-    router.prefetch('/stay-categories/all')
+    router.prefetch('/garage/all')
   }, [router])
 
   // Handle form submission
@@ -38,7 +38,7 @@ const SidebarNavigation: React.FC<Props> = ({ data, currencies, languages }) => 
     // Close the popover
     handleClose()
     // Redirect to the search page
-    router.push('/stay-categories/all' + (searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ''))
+    router.push('/garage/all' + (searchQuery ? `?q=${encodeURIComponent(searchQuery)}` : ''))
   }
 
   const _renderMenuChild = (

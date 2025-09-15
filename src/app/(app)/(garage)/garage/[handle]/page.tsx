@@ -59,7 +59,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
   const listing = await getStayListingByHandle(handle)
 
   if (!listing?.id) {
-    return redirect('/stay-categories/all')
+    return redirect('/garage/all')
   }
   const {
     address,

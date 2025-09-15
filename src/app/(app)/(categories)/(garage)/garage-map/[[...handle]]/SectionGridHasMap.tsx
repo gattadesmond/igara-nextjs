@@ -47,7 +47,7 @@ const SectionGridHasMap: FC<Props> = ({ className, listings, category, filterOpt
       </div>
 
       <MapFixedSection
-        closeButtonHref={`/stay-categories/${category.handle}#heading`}
+        closeButtonHref={`/garage/${category.handle}#heading`}
         currentHoverID={currentHoverID}
         listings={listings}
         listingType="Stays"

@@ -34,7 +34,7 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
   const filterOptions = await getStayListingFilterOptions()
 
   if (!category?.id) {
-    return redirect('/stay-categories/all')
+    return redirect('/garage/all')
   }
 
   return (
@@ -66,7 +66,7 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
             Over {convertNumbThousand(category.count)} places
             {category.handle !== 'all' ? ` in ${category.name}` : null}
           </h2>
-          <Button color="white" className="ms-auto" href={'/stay-categories-map/' + category.handle}>
+          <Button color="white" className="ms-auto" href={'/garage-map/' + category.handle}>
             <span className="me-1">Show map</span>
             <HugeiconsIcon icon={MapsLocation01Icon} size={20} color="currentColor" strokeWidth={1.5} />
           </Button>
