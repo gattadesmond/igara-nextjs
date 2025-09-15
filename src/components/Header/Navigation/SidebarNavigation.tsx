@@ -46,7 +46,7 @@ const SidebarNavigation: React.FC<Props> = ({ data, currencies, languages }) => 
     itemClass = 'pl-3 text-neutral-900 dark:text-neutral-200 font-medium'
   ) => {
     return (
-      <ul className="nav-mobile-sub-menu pb-1 pl-6 text-base">
+      <ul className="nav-mobile-sub-menu pb-1 pl-6 text-base z-30" >
         {item.children?.map((childMenu, index) => (
           <Disclosure key={index} as="li">
             <Link

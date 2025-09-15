@@ -30,7 +30,7 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
 
   return (
     <>
-      <section className="relative isolate mx-auto min-h-fit w-full py-12 md:pt-32 md:pb-24">
+      <section className="relative isolate mx-auto min-h-fit w-full py-12 md:pt-32 md:pb-24 z-10">
 
         <div className="absolute inset-0 isolate -z-10 lg:h-full overlay bg-cover bg-center overflow-hidden">
           {images.map((image, index) => (
