@@ -41,7 +41,7 @@ export const StaySearchForm = ({ className, formStyle = 'default' }: Props) => {
   return (
     <Form
       className={clsx(
-        'relative z-10 flex w-full max-w-4xl rounded-full bg-white [--form-bg:var(--color-white)] dark:bg-neutral-800 dark:[--form-bg:var(--color-neutral-800)]',
+        'relative z-10 mt-8 flex w-full max-w-4xl rounded-full bg-white [--form-bg:var(--color-white)] dark:bg-neutral-800 dark:[--form-bg:var(--color-neutral-800)]',
         className,
         formStyle === 'small' && 'custom-shadow-1',
         formStyle === 'default' && 'shadow-xl dark:shadow-2xl'
