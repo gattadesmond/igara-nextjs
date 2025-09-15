@@ -32,6 +32,16 @@ export const metadata: Metadata = {
     'sửa chữa xe hơi', 'garage chuyên nghiệp', 'dịch vụ ô tô', 'garage giá rẻ',
     'iGara', 'tìm garage', 'garage gần đây', 'đặt lịch sửa xe'
   ],
+    icons: {
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/favicon.png', type: 'image/png' },
+        { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
