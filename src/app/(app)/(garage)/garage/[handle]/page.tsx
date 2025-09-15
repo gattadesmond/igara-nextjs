@@ -302,32 +302,67 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
   }
 
   const renderFacilities = () => {
+    const amenities = [
+      {
+        icon: ShieldCheckIcon,
+        title: "Gara sửa chữa được chứng nhận",
+        description: "Gara đáng tin cậy này không bao giờ tính phí quá cao và đáp ứng các tiêu chuẩn chứng nhận RepairPal về giá cả công bằng.",
+        color: "text-blue-500"
+      },
+      {
+        icon: TruckIcon,
+        title: "Phục vụ 46 hãng xe, bao gồm Toyota",
+        description: `${title} là một gara dịch vụ đầy đủ có thể thực hiện tất cả các sửa chữa lớn và bảo dưỡng định kỳ. Xem tất cả hãng xe`,
+        color: "text-blue-500",
+        hasLink: true
+      },
+      {
+        icon: CalendarIcon,
+        title: "Lịch trình linh hoạt",
+        description: "Gara này có dịch vụ gửi xe sớm và sau giờ làm việc. Bạn có thể chọn các tùy chọn này và xem hướng dẫn khi đặt lịch hẹn.",
+        color: "text-blue-500"
+      },
+      {
+        icon: ShieldCheckIcon,
+        title: "Bảo hành",
+        description: `${title} bảo hành công việc của họ trong 12.000 km và 12 tháng.`,
+        color: "text-blue-500"
+      }
+    ]
+
     return (
       <div className="listingSection__wrap">
-        <div>
-          <SectionHeading>Tiện ích & Cơ sở vật chất</SectionHeading>
-          <SectionSubheading>Thông tin mở rộng về cơ sở vật chất của gara</SectionSubheading>
-        </div>
-        <Divider className="w-14!" />
-
-        <div className="grid grid-cols-1 gap-6 text-sm text-neutral-700 md:grid-cols-2 xl:grid-cols-3 dark:text-neutral-300">
-          {garageDetails.facilities.map((facility, index) => (
-            <div key={index} className="flex items-center gap-x-3">
-              <facility.icon className="h-6 w-6 text-blue-500" />
-              <span>{facility.name}</span>
+        <SectionHeading>Tiện ích & Dịch vụ</SectionHeading>
+        
+        <div className="space-y-6">
+          {amenities.map((amenity, index) => (
+            <div key={index} className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <amenity.icon className={`h-8 w-8 ${amenity.color}`} />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg text-neutral-900 dark:text-white mb-2">
+                  {amenity.title}
+                </h3>
+                <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+                  {amenity.description}
+                  {amenity.hasLink && (
+                    <span className="text-blue-500 hover:text-blue-600 cursor-pointer ml-1">
+                      Xem tất cả hãng xe
+                    </span>
+                  )}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
-
-        {/* Badge mở cửa cuối tuần */}
-        {garageDetails.isWeekendOpen && (
-          <div className="mt-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-800 rounded-full">
-              <CheckCircleIcon className="h-5 w-5" />
-              <span className="font-semibold">Mở cửa cuối tuần</span>
-            </div>
+          
+          {/* Show more amenities button */}
+          <div className="pt-4">
+            <button className="text-blue-500 hover:text-blue-600 font-medium text-sm">
+              Xem thêm tiện ích
+            </button>
           </div>
-        )}
+        </div>
       </div>
     )
   }
@@ -461,11 +496,12 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
           {renderGarageHeader()}
           {renderGarageDescription()}
           {renderCertifications()}
-          {renderServices()}
-          {renderPriceList()}
           {renderFacilities()}
+
+          {/* {renderServices()} */}
+          {renderPriceList()}
           {renderFAQ()}
-          {renderIGaraIntro()}
+          {/* {renderIGaraIntro()} */}
         </div>
 
         {/* SIDEBAR */}
