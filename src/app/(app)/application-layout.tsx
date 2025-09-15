@@ -21,7 +21,7 @@ const ApplicationLayout: React.FC<Props> = ({ children, header }) => {
       {children}
       {/*  */}
       {/* FooterQuickNavigation - Displays on mobile devices and is fixed at the bottom of the screen */}
-      <FooterQuickNavigation />
+      {/* <FooterQuickNavigation /> */}
       {/* Chose footer style here!!!! */}
       <Footer /> {/* <Footer /> or <Footer2 /> or <Footer3 /> or <Footer4 />*/}
       {/*  */}
