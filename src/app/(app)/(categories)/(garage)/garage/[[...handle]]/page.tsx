@@ -2,6 +2,7 @@ import HeroSectionWithSearchForm1 from '@/components/hero-sections/HeroSectionWi
 import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
 import ListingFilterTabs from '@/components/ListingFilterTabs'
 import StayCard2 from '@/components/StayCard2'
+import Breadcrumb from '@/components/Breadcrumb'
 import { getStayCategoryByHandle } from '@/data/categories'
 import { getStayListingFilterOptions, getStayListings } from '@/data/listings'
 import { Button } from '@/shared/Button'
@@ -41,27 +42,29 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
     <div className="pb-28">
       {/* Hero section */}
       <div className="container">
+        <div className="py-5">
+          <Breadcrumb
+            items={[
+              { label: 'Garage' },
+            ]}
+          />
+        </div>
         <HeroSectionWithSearchForm1
           heading={category.name}
           image={category.coverImage}
           imageAlt={category.name}
           searchForm={<StaySearchForm formStyle="default" />}
-          description={
-            <div className="flex items-center sm:text-lg">
-              <HugeiconsIcon icon={MapPinpoint02Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{category.region} </span>
-              <span className="mx-5"></span>
-              <HugeiconsIcon icon={House04Icon} size={20} color="currentColor" strokeWidth={1.5} />
-              <span className="ms-2.5">{convertNumbThousand(category.count)} stays</span>
-            </div>
-          }
+          description=""
         />
       </div>
 
       {/* Content */}
-      <div className="relative container mt-14 lg:mt-24">
+      <div className="relative container mt-6">
+        {/* Breadcrumb */}
+
+
         {/* start heading */}
-        <div className="flex flex-wrap items-end justify-between gap-x-2.5 gap-y-5">
+        <div className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-5">
           <h2 id="heading" className="scroll-mt-20 text-lg font-semibold sm:text-xl">
             Over {convertNumbThousand(category.count)} places
             {category.handle !== 'all' ? ` in ${category.name}` : null}

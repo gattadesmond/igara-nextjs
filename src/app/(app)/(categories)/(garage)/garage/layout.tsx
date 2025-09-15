@@ -19,7 +19,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
 
       {children}
 
-      <div className="container">
+      {/* <div className="container">
         <div className="relative py-16 lg:py-20">
           <BackgroundSection />
           <Heading subheading="Explore houses based on 10 types of stays">Explore the world with us.</Heading>
@@ -29,15 +29,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             categoryCardType="card5"
           />
         </div>
-        <SectionSubscribe2 className="py-24 lg:py-32" />
-        <div className="relative mb-24 py-16 lg:mb-28 lg:py-20">
-          <BackgroundSection />
-          <Heading subheading="Meet our top 10 authors of the month" isCenter>
-            Top 10 author of the month.
-          </Heading>
-          <SectionGridAuthorBox authors={authors} />
-        </div>
-      </div>
+       
+      </div> */}
     </ApplicationLayout>
   )
 }

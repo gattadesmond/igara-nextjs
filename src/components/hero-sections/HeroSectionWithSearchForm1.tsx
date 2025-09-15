@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
+import HeroSearchFormMobile from '@/components/HeroSearchFormMobile/HeroSearchFormMobile'
 
 const HeroSectionWithSearchForm1 = ({
   className,
@@ -21,22 +23,15 @@ const HeroSectionWithSearchForm1 = ({
   searchForm: React.ReactNode
 }) => {
   return (
-    <div className={clsx('relative flex flex-col-reverse pt-10 lg:flex-col lg:pt-12', className)}>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-        <div className="relative flex w-full flex-col items-start gap-y-8 pb-16 lg:pe-10 lg:pt-12 lg:pb-60 xl:gap-y-10 xl:pe-14">
-          <h1
-            className="text-3xl/[1.15] font-bold text-pretty xl:text-5xl/[1.1]"
-            dangerouslySetInnerHTML={{ __html: heading || '' }}
-          />
-          {description}
-          <div className="hidden  max-w-4xl lg:block xl:max-w-6xl">{searchForm}</div>
-        </div>
-
-        <div className="w-full">
-          <Image className="w-full" src={image} alt={imageAlt} priority />
-        </div>
+    <section className="relative isolate mx-auto w-full py-4 md:py-10 z-20">
+      <div className="mx-auto flex max-w-[850px] flex-col items-center gap-4">
+        <h1 className="font-headline text-2xl mx-auto !block text-center font-bold text-balance md:text-3xl  leading-normal uppercase ">
+          Garage sửa xe ở Tp.HCM
+        </h1>
+        <StaySearchForm formStyle={'default'} className='max-md:hidden' />
+        <HeroSearchFormMobile className='md:hidden' />
       </div>
-    </div>
+    </section>
   )
 }
 
