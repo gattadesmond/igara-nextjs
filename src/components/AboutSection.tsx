@@ -63,7 +63,7 @@ export default function AboutSection({ className = '' }: AboutSectionProps) {
       <div className="container">
         {/* Content */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 items-center'>
-          <div className="z-10 max-w-[600px] space-y-8 xl:max-w-[755px]">
+          <div className=" max-w-[600px] space-y-8 xl:max-w-[755px]">
             <SectionHeading 
               subtitle=""
               title="Khám phá tiềm năng xe của bạn cùng iGara"

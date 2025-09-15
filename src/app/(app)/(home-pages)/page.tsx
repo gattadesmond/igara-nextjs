@@ -24,6 +24,7 @@ import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
 import HeroSectionCar from '@/components/hero-sections/HeroSectionCar'
 import AboutSection from '@/components/AboutSection'
 import SectionCaseStudy from '@/components/SectionCaseStudy'
+import SectionBlog from '@/components/SectionBlog'
 
 export const metadata: Metadata = {
   title: 'iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín',
@@ -53,11 +54,19 @@ async function Page() {
 
       <section className=' py-14 md:py-16 '>
         <div className='container'>
-        <SectionCaseStudy />
+          <SectionCaseStudy />
         </div>
       </section>
 
 
+
+
+
+      <section className=' py-14 md:py-16 bg-neutral-50'>
+        <div className='container'>
+          <SectionBlog />
+        </div>
+      </section>
 
 
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
@@ -65,6 +74,7 @@ async function Page() {
         <div className="relative py-16">
           <SectionClientSay />
         </div>
+
 
         {/* <div>
           <HeadingWithSub subheading="Explore houses based on 10 types of stays">
