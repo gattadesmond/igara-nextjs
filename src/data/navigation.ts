@@ -3,82 +3,77 @@ export async function getNavigation(): Promise<TNavigationItem[]> {
     {
       id: '1',
       href: '/',
-      name: 'Stays',
+      name: 'Trang chủ',
     },
     {
       id: '2',
-      href: '/real-estate',
-      name: 'Real Estate',
-    },
-    {
-      id: '4',
-      href: '/car',
-      name: 'Cars',
+      href: '/garage',
+      name: 'Gara gần đây',
     },
     {
       id: '5',
       href: '/',
-      name: 'Templates',
+      name: 'Dịch vụ',
       type: 'mega-menu',
       children: [
         {
           id: '1',
           href: '#',
-          name: 'Home Page',
+          name: 'Sửa chữa động cơ & hộp số',
           children: [
-            {
-              id: '1-1',
-              href: '/',
-              name: 'Stays',
-            },
-            {
-              id: '1-2',
-              href: '/real-estate',
-              name: 'Real Estate',
-            },
-            { id: '1-3', href: '/experience', name: 'Experiences' },
-            { id: '1-4', href: '/car', name: 'Cars' },
-            { id: '1-5', href: '/flight-categories/all', name: 'Flights' },
-            { id: '1-6', href: '/home-2', name: 'Home 2' },
+            { id: '1-1', href: '/dich-vu/sua-dong-co-o-to', name: 'Sửa động cơ ô tô' },
+            { id: '1-2', href: '/dich-vu/sua-hop-so-tu-dong', name: 'Sửa hộp số tự động' },
+            { id: '1-3', href: '/dich-vu/sua-hop-so-san', name: 'Sửa hộp số sàn' },
+            { id: '1-4', href: '/dich-vu/sua-ly-hop-con', name: 'Sửa ly hợp (côn)' },
+            { id: '1-5', href: '/dich-vu/thay-dau-hop-so', name: 'Thay dầu hộp số' },
+            { id: '1-6', href: '/dich-vu/sua-he-thong-lam-mat', name: 'Sửa hệ thống làm mát' },
+            { id: '1-7', href: '/dich-vu/ve-sinh-kim-phun-buong-dot', name: 'Vệ sinh kim phun, buồng đốt' },
+            { id: '1-8', href: '/dich-vu/sua-he-thong-nhien-lieu', name: 'Sửa hệ thống nhiên liệu' },
           ],
         },
         {
           id: '2',
           href: '#',
-          name: 'Categories',
+          name: 'Phanh – Lái – Gầm xe',
           children: [
-            { id: '2-1', href: '/stay-categories/all', name: 'Stay Categories' },
-            { id: '2-4', href: '/car-categories/all', name: 'Car Categories' },
-            { id: '2-2', href: '/real-estate-categories/all', name: 'Real Estate ' },
-            { id: '2-3', href: '/experience-categories/all', name: 'Experiences ' },
-            { id: '2-5', href: '/flight-categories/all', name: 'Flight Categories' },
-            { id: '2-6', href: '/stay-categories-map/all', name: 'Show Map' },
+            { id: '2-1', href: '/dich-vu/sua-phanh-o-to', name: 'Sửa phanh ô tô' },
+            { id: '2-2', href: '/dich-vu/thay-ma-phanh', name: 'Thay má phanh' },
+            { id: '2-3', href: '/dich-vu/thay-dia-phanh', name: 'Thay đĩa phanh' },
+            { id: '2-4', href: '/dich-vu/thay-dau-phanh', name: 'Thay dầu phanh' },
+            { id: '2-5', href: '/dich-vu/sua-he-thong-lai', name: 'Sửa hệ thống lái' },
+            { id: '2-6', href: '/dich-vu/can-chinh-thuoc-lai', name: 'Cân chỉnh thước lái' },
+            { id: '2-7', href: '/dich-vu/sua-giam-xoc', name: 'Sửa giảm xóc' },
+            { id: '2-8', href: '/dich-vu/sua-gam-xe', name: 'Sửa gầm xe' },
           ],
         },
         {
           id: '3',
           href: '#',
-          name: 'Listing Pages',
+          name: 'Điện & Điều hòa ô tô',
           children: [
-            { id: '3-1', href: '/stay-listings/handle-123', name: 'Stay listing' },
-            { id: '3-2', href: '/car-listings/handle-123', name: 'Car listing' },
-            { id: '3-3', href: '/experience-listings/handle-123', name: 'Experience listing' },
-            { id: '3-4', href: '/real-estate-listings/handle-123', name: 'Real Estate' },
+            { id: '3-1', href: '/dich-vu/sua-he-thong-dien-o-to', name: 'Sửa hệ thống điện ô tô' },
+            { id: '3-2', href: '/dich-vu/thay-ac-quy-o-to', name: 'Thay ắc quy ô tô' },
+            { id: '3-3', href: '/dich-vu/sua-may-phat-dien-o-to', name: 'Sửa máy phát điện ô tô' },
+            { id: '3-4', href: '/dich-vu/sua-cu-de-khoi-dong', name: 'Sửa củ đề (khởi động)' },
+            { id: '3-5', href: '/dich-vu/sua-dieu-hoa-o-to', name: 'Sửa điều hòa ô tô' },
+            { id: '3-6', href: '/dich-vu/nap-gas-dieu-hoa', name: 'Nạp gas điều hòa' },
+            { id: '3-7', href: '/dich-vu/thay-loc-lanh', name: 'Thay lốc lạnh' },
+            { id: '3-8', href: '/dich-vu/ve-sinh-gian-lanh', name: 'Vệ sinh giàn lạnh' },
+            { id: '3-9', href: '/dich-vu/sua-ecu-o-to', name: 'Sửa ECU ô tô' },
           ],
         },
         {
           id: '4',
-          href: '/#',
-          name: 'Other Pages',
-          type: 'dropdown',
+          href: '#',
+          name: 'Sơn sửa & Thân vỏ xe',
           children: [
-            { id: '4-1', href: '/authors/truelock-alric', name: 'Author' },
-            { id: '4-2', href: '/blog', name: 'Blog' },
-            { id: '4-3', href: '/checkout', name: 'Checkout' },
-            { id: '4-5', href: '/contact', name: 'Contact' },
-            { id: '4-6', href: '/login', name: 'Login/Signup' },
-            { id: '4-7', href: '/add-listing/1', name: '+ Add listing' },
-            { id: '4-8', href: '/account', name: 'Account' },
+            { id: '4-1', href: '/dich-vu/son-dam-xe-o-to', name: 'Sơn dặm xe ô tô' },
+            { id: '4-2', href: '/dich-vu/son-lai-toan-bo-xe', name: 'Sơn lại toàn bộ xe' },
+            { id: '4-3', href: '/dich-vu/sua-chua-mop-meo', name: 'Sửa chữa móp méo' },
+            { id: '4-4', href: '/dich-vu/go-han-than-vo', name: 'Gò hàn thân vỏ' },
+            { id: '4-5', href: '/dich-vu/phu-ceramic-o-to', name: 'Phủ ceramic ô tô' },
+            { id: '4-6', href: '/dich-vu/phu-nano-o-to', name: 'Phủ nano ô tô' },
+            { id: '4-7', href: '/dich-vu/dan-phim-cach-nhiet', name: 'Dán phim cách nhiệt' },
           ],
         },
       ],
@@ -123,8 +118,8 @@ export async function getNavMegaMenu(): Promise<TNavigationItem> {
   const navigation = await getNavigation()
 
   // Find the mega menu item in the navigation array
-  // for demo purposes, we assume the mega menu is the one with name 'Templates'
-  return navigation.find((item) => item.type === 'mega-menu' && item.name === 'Templates') || {}
+  // for demo purposes, we assume the mega menu is the one with name 'Dịch vụ'
+  return navigation.find((item) => item.type === 'mega-menu' && item.name === 'Dịch vụ') || {}
 }
 
 // ============ TYPE =============

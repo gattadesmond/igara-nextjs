@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     'Nền tảng tra cứu, tìm kiếm gara ô tô uy tín với đầy đủ thông tin đi kèm với chất lượng. Tìm kiếm ngay.',
   keywords: [
-    'garage ô tô', 'sửa chữa ô tô', 'bảo dưỡng xe hơi', 'garage uy tín', 
+    'garage ô tô', 'sửa chữa ô tô', 'bảo dưỡng xe hơi', 'garage uy tín',
     'sửa xe gần đây', 'garage Hà Nội', 'garage TP.HCM', 'garage Đà Nẵng',
     'thay lốp xe', 'sửa động cơ', 'bảo dưỡng định kỳ', 'garage 24/7',
     'sửa chữa xe hơi', 'garage chuyên nghiệp', 'dịch vụ ô tô', 'garage giá rẻ',

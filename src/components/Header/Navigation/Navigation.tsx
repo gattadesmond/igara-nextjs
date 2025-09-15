@@ -43,7 +43,7 @@ const MegaMenu = ({ menuItem, category }: { menuItem: TNavigationItem; category:
           <div className="bg-white shadow-lg dark:bg-neutral-900">
             <div className="container">
               <div className="flex border-t border-neutral-200 py-12 text-sm dark:border-neutral-700">
-                <div className="grid flex-1 grid-cols-4 gap-6 pr-6 xl:gap-8 xl:pr-20">
+                <div className="grid flex-1 grid-cols-4 gap-6 pr-6 xl:gap-8">
                   {menuItem.children?.map((menuChild, index) => (
                     <div key={index}>
                       <p className="font-medium text-neutral-900 dark:text-neutral-200">{menuChild.name}</p>
@@ -51,9 +51,9 @@ const MegaMenu = ({ menuItem, category }: { menuItem: TNavigationItem; category:
                     </div>
                   ))}
                 </div>
-                <div className="w-2/5 xl:w-5/14">
+                {/* <div className="w-2/5 xl:w-5/14">
                   <CardCategory7 category={category} />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

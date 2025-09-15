@@ -38,7 +38,6 @@ async function Page() {
     <main className="relative overflow-hidden">
       <BgGlassmorphism />
       <HeroSectionCar 
-      
       />
 
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">

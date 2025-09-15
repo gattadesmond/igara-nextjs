@@ -52,9 +52,9 @@ export default function MegaMenuPopover({
                     </div>
                   ))}
                 </div>
-                <div className="w-2/5 xl:w-5/14">
+                {/* <div className="w-2/5 xl:w-5/14">
                   <CardCategory7 category={featuredCategory} />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

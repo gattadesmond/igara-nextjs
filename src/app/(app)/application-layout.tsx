@@ -1,6 +1,6 @@
 import Footer2 from '@/components/Footer2'
 import FooterQuickNavigation from '@/components/FooterQuickNavigation'
-import Header from '@/components/Header/Header'
+import Header2 from '@/components/Header/Header2'
 import HeroSearchFormMobile from '@/components/HeroSearchFormMobile/HeroSearchFormMobile'
 import Aside from '@/components/aside'
 import AsideSidebarNavigation from '@/components/aside-sidebar-navigation'
@@ -16,7 +16,7 @@ const ApplicationLayout: React.FC<Props> = ({ children, header }) => {
   return (
     <Aside.Provider>
       {/* Desktop Header - Will be hidden on mobile devices  */}
-      <div className="relative z-20 hidden lg:block">{header ? header : <Header />}</div>
+      <div className="relative z-20 hidden lg:block">{header ? header : <Header2 />}</div>
       {/* HeroSearchFormMobile - will display on mobile devices instead of Header-desktop */}
       <div className="sticky top-0 z-20 bg-white shadow-xs lg:hidden dark:bg-neutral-900">
         <div className="container flex h-20 items-center justify-center">
