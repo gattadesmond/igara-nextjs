@@ -147,7 +147,7 @@ const HeaderGalleryGrid1 = ({
 }) => {
   return (
     <header className="relative md:grid md:grid-cols-4 md:gap-2">
-      <div className="relative aspect-4/5 size-full md:col-span-2 md:aspect-4/4" onClick={() => handleOpenDialog(0)}>
+      <div className="relative aspect-1/1 sm:aspect-4/5 size-full md:col-span-2 md:aspect-4/4" onClick={() => handleOpenDialog(0)}>
         {images[0] && (
           <Image
             fill
