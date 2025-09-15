@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 // import ServiceMenu from '@/components/organisms/ServiceMenu';
 
 import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
+import { CarBrandCarousel } from '@/components/CarBrandCarousel'
 
 interface HeroSectionProps {
   className?: string;
@@ -29,7 +30,7 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
 
   return (
     <>
-      <section className="relative isolate mx-auto min-h-fit w-full py-12 md:py-36">
+      <section className="relative isolate mx-auto min-h-fit w-full py-12 md:pt-32 md:pb-24">
 
         <div className="absolute inset-0 isolate -z-10 lg:h-full overlay bg-cover bg-center overflow-hidden">
           {images.map((image, index) => (
@@ -52,7 +53,7 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
               content: "",
               position: "absolute",
               inset: 0,
-              backgroundImage: "linear-gradient(0deg, rgba(32, 0, 0, .4), rgba(32, 0, 0, .4)), linear-gradient(180deg, rgba(32, 0, 0, .4) 50%, #000)"
+              backgroundImage: "linear-gradient(0deg, rgba(32, 0, 0, .6), rgba(32, 0, 0, .6)), linear-gradient(180deg, rgba(32, 0, 0, .6) 50%, #000)"
             }}
           ></div>
         </div>
@@ -119,13 +120,11 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
               <span className="text-white/90"> 1000+ khách hàng</span>
             </div>
           </div>
-          {/* 
-          <ServiceMenu />
-
           <CarBrandCarousel
             className="w-full pt-8 pb-0"
-            speed={40}
-          /> */}
+            speed={40}  
+          />
+
         </div>
 
       </section>
