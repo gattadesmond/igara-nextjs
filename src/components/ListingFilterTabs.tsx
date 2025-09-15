@@ -19,34 +19,46 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { FilterVerticalIcon } from '@hugeicons/core-free-icons'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
+import { 
+  FilterVerticalIcon,
+  CalendarIcon,
+  TagIcon,
+  BusIcon,
+  DollarIcon,
+  WrenchIcon,
+  StarIcon,
+  ClockIcon
+} from '@hugeicons/core-free-icons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import clsx from 'clsx'
 import Form from 'next/form'
 import { useState } from 'react'
 import { PriceRangeSlider } from './PriceRangeSlider'
 
-type CheckboxFilter = {
+type BaseFilter = {
   label: string
   name: string
+  icon?: any
+}
+
+type CheckboxFilter = BaseFilter & {
   tabUIType: 'checkbox'
   options: {
     name: string
+    value?: string
     description?: string
     defaultChecked?: boolean
   }[]
 }
-type PriceRangeFilter = {
-  name: string
-  label: string
+
+type PriceRangeFilter = BaseFilter & {
   tabUIType: 'price-range'
   min: number
   max: number
 }
-type SelectNumberFilter = {
-  name: string
-  label: string
+
+type SelectNumberFilter = BaseFilter & {
   tabUIType: 'select-number'
   options: {
     name: string
@@ -54,193 +66,224 @@ type SelectNumberFilter = {
   }[]
 }
 
-const demo_filters_options = [
+type FilterOption = CheckboxFilter | PriceRangeFilter | SelectNumberFilter
+
+const demo_filters_options: FilterOption[] = [
   {
-    name: 'type-of-place',
-    label: 'Type of place',
-    tabUIType: 'checkbox',
+    name: 'availability',
+    label: 'Tình trạng',
+    tabUIType: 'checkbox' as const,
+    icon: CalendarIcon,
     options: [
       {
-        name: 'Entire place',
-        value: 'entire_place',
-        description: 'Have a place to yourself',
+        name: 'Có sẵn ngay',
+        value: 'available_now',
+        description: 'Gara có thể tiếp nhận xe ngay lập tức',
         defaultChecked: true,
       },
       {
-        name: 'Private room',
-        value: 'private_room',
-        description: 'Have your own room and share some common spaces',
+        name: 'Có lịch trống',
+        value: 'has_slots',
+        description: 'Gara có lịch trống trong ngày',
         defaultChecked: true,
       },
       {
-        name: 'Hotel room',
-        value: 'hotel_room',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Shared room',
-        value: 'shared_room',
-        description: 'Stay in a shared space, like a common room',
+        name: 'Chỉ nhận đặt lịch',
+        value: 'appointment_only',
+        description: 'Chỉ nhận xe khi có đặt lịch trước',
       },
     ],
   },
   {
-    label: 'Price per day',
-    name: 'price-per-day',
-    tabUIType: 'price-range',
-    min: 0,
-    max: 1000,
-  },
-  {
-    label: 'Rooms & Beds',
-    name: 'rooms-beds',
-    tabUIType: 'select-number',
-    options: [
-      { name: 'Beds', max: 10 },
-      { name: 'Bedrooms', max: 10 },
-      { name: 'Bathrooms', max: 10 },
-    ],
-  },
-  {
-    label: 'Amenities',
-    name: 'amenities',
-    tabUIType: 'checkbox',
+    name: 'active-offers',
+    label: 'Ưu đãi',
+    tabUIType: 'checkbox' as const,
+    icon: TagIcon,
     options: [
       {
-        name: 'Kitchen',
-        value: 'kitchen',
-        description: 'Have a place to yourself',
+        name: 'Giảm giá 20%',
+        value: 'discount_20',
+        description: 'Giảm giá 20% cho dịch vụ đầu tiên',
         defaultChecked: true,
       },
       {
-        name: 'Air conditioning',
-        value: 'air_conditioning',
-        description: 'Have your own room and share some common spaces',
+        name: 'Miễn phí kiểm tra',
+        value: 'free_inspection',
+        description: 'Miễn phí kiểm tra tổng thể xe',
         defaultChecked: true,
       },
       {
-        name: 'Heating',
-        value: 'heating',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
+        name: 'Bảo hành 6 tháng',
+        value: 'warranty_6months',
+        description: 'Bảo hành 6 tháng cho các dịch vụ',
       },
       {
-        name: 'Dryer',
-        value: 'dryer',
-        description: 'Stay in a shared space, like a common room',
-      },
-      {
-        name: 'Washer',
-        value: 'washer',
-        description: 'Stay in a shared space, like a common room',
+        name: 'Tặng kèm rửa xe',
+        value: 'free_car_wash',
+        description: 'Tặng kèm dịch vụ rửa xe',
       },
     ],
   },
   {
-    name: 'Facilities',
-    label: 'Facilities',
-    tabUIType: 'checkbox',
+    name: 'shuttle',
+    label: 'Dịch vụ đưa đón',
+    tabUIType: 'checkbox' as const,
+    icon: BusIcon,
     options: [
       {
-        name: 'Free parking on premise',
-        value: 'free_parking_on_premise',
-        description: 'Have a place to yourself',
+        name: 'Có xe đưa đón',
+        value: 'has_shuttle',
+        description: 'Cung cấp dịch vụ đưa đón khách hàng',
+        defaultChecked: true,
       },
       {
-        name: 'Hot tub',
-        value: 'hot_tub',
-        description: 'Have your own room and share some common spaces',
+        name: 'Đưa đón miễn phí',
+        value: 'free_shuttle',
+        description: 'Dịch vụ đưa đón hoàn toàn miễn phí',
       },
       {
-        name: 'Gym',
-        value: 'gym',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
+        name: 'Đưa đón trong bán kính 5km',
+        value: 'shuttle_5km',
+        description: 'Đưa đón trong bán kính 5km',
+      },
+    ],
+  },
+
+  {
+    label: 'Loại dịch vụ',
+    name: 'service-type',
+    tabUIType: 'checkbox' as const,
+    icon: WrenchIcon,
+    options: [
+      {
+        name: 'Bảo dưỡng định kỳ',
+        value: 'maintenance',
+        description: 'Dịch vụ bảo dưỡng định kỳ cho xe',
+        defaultChecked: true,
       },
       {
-        name: 'Pool',
-        value: 'pool',
-        description: 'Stay in a shared space, like a common room',
+        name: 'Sửa chữa',
+        value: 'repair',
+        description: 'Sửa chữa các lỗi hỏng hóc',
+        defaultChecked: true,
       },
       {
-        name: 'EV charger',
-        value: 'ev_charger',
-        description: 'Stay in a shared space, like a common room',
+        name: 'Thay thế phụ tùng',
+        value: 'parts_replacement',
+        description: 'Thay thế các phụ tùng cần thiết',
+      },
+      {
+        name: 'Kiểm tra kỹ thuật',
+        value: 'technical_inspection',
+        description: 'Kiểm tra kỹ thuật tổng thể',
+      },
+      {
+        name: 'Bảo hiểm',
+        value: 'insurance',
+        description: 'Dịch vụ bảo hiểm xe',
       },
     ],
   },
   {
-    name: 'Property-type',
-    label: 'Property type',
-    tabUIType: 'checkbox',
+    name: 'facilities',
+    label: 'Tiện ích',
+    tabUIType: 'checkbox' as const,
+    icon: StarIcon,
     options: [
       {
-        name: 'House',
-        value: 'house',
-        description: 'Have a place to yourself',
+        name: 'Chỗ đỗ xe miễn phí',
+        value: 'free_parking',
+        description: 'Có chỗ đỗ xe miễn phí cho khách hàng',
       },
       {
-        name: 'Bed and breakfast',
-        value: 'bed_and_breakfast',
-        description: 'Have your own room and share some common spaces',
+        name: 'Phòng chờ có điều hòa',
+        value: 'air_conditioned_waiting',
+        description: 'Phòng chờ có điều hòa nhiệt độ',
       },
       {
-        name: 'Apartment',
-        defaultChecked: true,
-        value: 'apartment',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
+        name: 'WiFi miễn phí',
+        value: 'free_wifi',
+        description: 'Cung cấp WiFi miễn phí',
       },
       {
-        name: 'Boutique hotel',
-        value: 'boutique_hotel',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
+        name: 'Cà phê miễn phí',
+        value: 'free_coffee',
+        description: 'Cung cấp cà phê miễn phí cho khách hàng',
       },
       {
-        name: 'Bungalow',
-        value: 'bungalow',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Chalet',
-        defaultChecked: true,
-        value: 'chalet',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Condominium',
-        defaultChecked: true,
-        value: 'condominium',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Cottage',
-        value: 'cottage',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Guest suite',
-        value: 'guest_suite',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
-      },
-      {
-        name: 'Guesthouse',
-        value: 'guesthouse',
-        description: 'Have a private or shared room in a boutique hotel, hostel, and more',
+        name: 'Sạc điện cho xe điện',
+        value: 'ev_charging',
+        description: 'Có trạm sạc điện cho xe điện',
       },
     ],
   },
   {
-    name: 'House-rules',
-    label: 'House rules',
-    tabUIType: 'checkbox',
+    name: 'brand-specialization',
+    label: 'Chuyên môn thương hiệu',
+    tabUIType: 'checkbox' as const,
     options: [
       {
-        name: 'Pets allowed',
-        value: 'pets_allowed',
-        description: 'Have a place to yourself',
+        name: 'Toyota',
+        value: 'toyota',
+        description: 'Chuyên sửa chữa xe Toyota',
       },
       {
-        name: 'Smoking allowed',
-        value: 'smoking_allowed',
-        description: 'Have your own room and share some common spaces',
+        name: 'Honda',
+        value: 'honda',
+        description: 'Chuyên sửa chữa xe Honda',
+      },
+      {
+        name: 'Hyundai',
+        value: 'hyundai',
+        description: 'Chuyên sửa chữa xe Hyundai',
+      },
+      {
+        name: 'Ford',
+        value: 'ford',
+        description: 'Chuyên sửa chữa xe Ford',
+      },
+      {
+        name: 'Mazda',
+        value: 'mazda',
+        description: 'Chuyên sửa chữa xe Mazda',
+      },
+      {
+        name: 'Kia',
+        value: 'kia',
+        description: 'Chuyên sửa chữa xe Kia',
+      },
+      {
+        name: 'Mitsubishi',
+        value: 'mitsubishi',
+        description: 'Chuyên sửa chữa xe Mitsubishi',
+      },
+      {
+        name: 'Nissan',
+        value: 'nissan',
+        description: 'Chuyên sửa chữa xe Nissan',
+      },
+    ],
+  },
+  {
+    name: 'working-hours',
+    label: 'Giờ làm việc',
+    tabUIType: 'checkbox' as const,
+    icon: ClockIcon,
+    options: [
+      {
+        name: 'Mở cửa 24/7',
+        value: 'open_24_7',
+        description: 'Mở cửa 24 giờ, 7 ngày trong tuần',
+      },
+      {
+        name: 'Mở cửa cuối tuần',
+        value: 'open_weekends',
+        description: 'Mở cửa cả thứ 7 và chủ nhật',
+      },
+      {
+        name: 'Mở cửa tối muộn',
+        value: 'open_late',
+        description: 'Mở cửa đến tối muộn (sau 8h tối)',
       },
     ],
   },
@@ -261,12 +304,14 @@ const CheckboxPanel = ({ filterOption, className }: { filterOption: CheckboxFilt
     </Fieldset>
   )
 }
-const PriceRagePanel = ({ filterOption: { min, max, name } }: { filterOption: PriceRangeFilter }) => {
+const PriceRagePanel = ({ filterOption }: { filterOption: PriceRangeFilter }) => {
+  const { min, max, name } = filterOption
   const [rangePrices, setRangePrices] = useState([min, max])
 
   return <PriceRangeSlider defaultValue={rangePrices} onChange={setRangePrices} min={min} max={max} />
 }
-const NumberSelectPanel = ({ filterOption: { name, options } }: { filterOption: SelectNumberFilter }) => {
+const NumberSelectPanel = ({ filterOption }: { filterOption: SelectNumberFilter }) => {
+  const { name, options } = filterOption
   return (
     <div className="relative flex flex-col gap-y-5">
       {options.map((option) => (
@@ -276,12 +321,21 @@ const NumberSelectPanel = ({ filterOption: { name, options } }: { filterOption: 
   )
 }
 
+const sortOptions = [
+  { value: 'recommended', label: 'Được đề xuất' },
+  { value: 'distance', label: 'Khoảng cách' },
+  { value: 'rating', label: 'Đánh giá' },
+  { value: 'availability', label: 'Tình trạng' },
+]
+
 const ListingFilterTabs = ({
   filterOptions = demo_filters_options,
 }: {
-  filterOptions?: Partial<typeof demo_filters_options>
+  filterOptions?: FilterOption[]
 }) => {
   const [showAllFilter, setShowAllFilter] = useState(false)
+  const [selectedSort, setSelectedSort] = useState('recommended')
+  const [showSortDropdown, setShowSortDropdown] = useState(false)
 
   const handleFormSubmit = async (formData: FormData) => {
     const formDataObject = Object.fromEntries(formData.entries())
@@ -297,7 +351,7 @@ const ListingFilterTabs = ({
           className="w-full border-black! ring-1 ring-black ring-inset md:w-auto dark:border-neutral-200! dark:ring-neutral-200"
         >
           <HugeiconsIcon icon={FilterVerticalIcon} size={16} color="currentColor" strokeWidth={1.5} />
-          <span>{T['common']['All filters']}</span>
+          <span>Tất cả bộ lọc</span>
           <span className="absolute top-0 -right-0.5 flex size-5 items-center justify-center rounded-full bg-black text-[0.65rem] font-semibold text-white ring-2 ring-white dark:bg-neutral-200 dark:text-neutral-900 dark:ring-neutral-900">
             4
           </span>
@@ -321,7 +375,7 @@ const ListingFilterTabs = ({
             >
               <div className="relative shrink-0 border-b border-neutral-200 p-4 text-center sm:px-8 dark:border-neutral-800">
                 <DialogTitle as="h3" className="text-lg leading-6 font-medium text-gray-900">
-                  {T['common']['Filters']}
+                  Bộ lọc
                 </DialogTitle>
                 <div className="absolute end-2 top-2">
                   <ButtonClose plain onClick={() => setShowAllFilter(false)} />
@@ -336,13 +390,13 @@ const ListingFilterTabs = ({
                         <h3 className="text-xl font-medium">{filterOption.label}</h3>
                         <div className="relative mt-6">
                           {filterOption.tabUIType === 'checkbox' && (
-                            <CheckboxPanel filterOption={filterOption as CheckboxFilter} />
+                            <CheckboxPanel filterOption={filterOption} />
                           )}
                           {filterOption.tabUIType === 'price-range' && (
-                            <PriceRagePanel key={index} filterOption={filterOption as PriceRangeFilter} />
+                            <PriceRagePanel key={index} filterOption={filterOption} />
                           )}
                           {filterOption.tabUIType === 'select-number' && (
-                            <NumberSelectPanel key={index} filterOption={filterOption as SelectNumberFilter} />
+                            <NumberSelectPanel key={index} filterOption={filterOption} />
                           )}
                         </div>
                       </div>
@@ -353,10 +407,10 @@ const ListingFilterTabs = ({
 
               <div className="flex shrink-0 items-center justify-between bg-neutral-50 p-4 sm:px-8 dark:border-t dark:border-neutral-800 dark:bg-neutral-900">
                 <ButtonThird className="-mx-3" onClick={() => setShowAllFilter(false)} type="button">
-                  {T['common']['Clear All']}
+                  Xóa tất cả
                 </ButtonThird>
                 <ButtonPrimary type="submit" onClick={() => setShowAllFilter(false)}>
-                  {T['common']['Apply filters']}
+                  Áp dụng bộ lọc
                 </ButtonPrimary>
               </div>
             </DialogPanel>
@@ -367,13 +421,61 @@ const ListingFilterTabs = ({
   }
 
   if (!filterOptions || filterOptions.length === 0) {
-    return <div>No filter options available</div>
+    return <div>Không có tùy chọn bộ lọc</div>
+  }
+
+  const renderSortDropdown = () => {
+    return (
+      <div className="relative ml-auto">
+        <Popover>
+          <PopoverButton
+            as={Button}
+            outline
+            className="flex items-center gap-2 border-neutral-300! ring-1 ring-neutral-300 ring-inset dark:border-neutral-600! dark:ring-neutral-600"
+            onClick={() => setShowSortDropdown(!showSortDropdown)}
+          >
+            <span>{sortOptions.find(option => option.value === selectedSort)?.label}</span>
+            {showSortDropdown ? (
+              <ChevronUpIcon className="size-4" />
+            ) : (
+              <ChevronDownIcon className="size-4" />
+            )}
+          </PopoverButton>
+
+          <PopoverPanel
+            transition
+            unmount={false}
+            className="absolute right-0 top-full z-10 mt-3 w-48 transition data-closed:translate-y-1 data-closed:opacity-0"
+          >
+            <div className="rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900">
+              <div className="py-2">
+                {sortOptions.map((option) => (
+                  <button
+                    key={option.value}
+                    className={`w-full px-4 py-2 text-left text-sm hover:bg-neutral-50 dark:hover:bg-neutral-800 ${
+                      selectedSort === option.value ? 'bg-neutral-100 dark:bg-neutral-800' : ''
+                    }`}
+                    onClick={() => {
+                      setSelectedSort(option.value)
+                      setShowSortDropdown(false)
+                    }}
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </PopoverPanel>
+        </Popover>
+      </div>
+    )
   }
 
   return (
-    <div className="flex flex-wrap md:gap-x-4 md:gap-y-2">
-      {renderTabAllFilters()}
-      <PopoverGroup className="hidden flex-wrap gap-x-4 gap-y-2 md:flex" as={Form} action={handleFormSubmit}>
+    <div className="flex flex-wrap items-center justify-between md:gap-x-4 md:gap-y-2">
+      <div className="flex flex-wrap gap-x-4 gap-y-2">
+        {renderTabAllFilters()}
+        <PopoverGroup className="hidden flex-wrap gap-x-4 gap-y-2 md:flex" as={Form} action={handleFormSubmit}>
         <div className="h-auto w-px bg-neutral-200 dark:bg-neutral-700"></div>
         {filterOptions.map((filterOption, index) => {
           // only show 3 filters in the tab. Other filters will be shown in the All-filters-popover
@@ -382,7 +484,9 @@ const ListingFilterTabs = ({
           }
 
           const checkedNumber =
-            (filterOption as CheckboxFilter).options?.filter((option) => !!option.defaultChecked)?.length || 0
+            filterOption.tabUIType === 'checkbox' 
+              ? (filterOption as CheckboxFilter).options?.filter((option) => !!option.defaultChecked)?.length || 0
+              : 0
 
           return (
             <Popover className="relative" key={index}>
@@ -395,6 +499,9 @@ const ListingFilterTabs = ({
                     'border-black! ring-1 ring-black ring-inset dark:border-neutral-200! dark:ring-neutral-200'
                 )}
               >
+                {filterOption.icon && (
+                  <HugeiconsIcon icon={filterOption.icon} size={16} color="currentColor" strokeWidth={1.5} />
+                )}
                 <span>{filterOption.label}</span>
                 <ChevronDownIcon className="size-4" />
                 {checkedNumber ? (
@@ -412,22 +519,22 @@ const ListingFilterTabs = ({
                 <div className="rounded-2xl border border-neutral-200 bg-white shadow-xl dark:border-neutral-700 dark:bg-neutral-900">
                   <div className="hidden-scrollbar max-h-[28rem] overflow-y-auto px-5 py-6">
                     {filterOption.tabUIType === 'checkbox' && (
-                      <CheckboxPanel filterOption={filterOption as CheckboxFilter} />
+                      <CheckboxPanel filterOption={filterOption} />
                     )}
                     {filterOption.tabUIType === 'price-range' && (
-                      <PriceRagePanel key={index} filterOption={filterOption as PriceRangeFilter} />
+                      <PriceRagePanel key={index} filterOption={filterOption} />
                     )}
                     {filterOption.tabUIType === 'select-number' && (
-                      <NumberSelectPanel key={index} filterOption={filterOption as SelectNumberFilter} />
+                      <NumberSelectPanel key={index} filterOption={filterOption} />
                     )}
                   </div>
 
                   <div className="flex items-center justify-between rounded-b-2xl bg-neutral-50 p-5 dark:border-t dark:border-neutral-800 dark:bg-neutral-900">
                     <CloseButton className="-mx-3" as={ButtonThird} type="button">
-                      {T['common']['Clear']}
+                      Xóa
                     </CloseButton>
                     <CloseButton type="submit" as={ButtonPrimary}>
-                      {T['common']['Apply']}
+                      Áp dụng
                     </CloseButton>
                   </div>
                 </div>
@@ -435,7 +542,9 @@ const ListingFilterTabs = ({
             </Popover>
           )
         })}
-      </PopoverGroup>
+        </PopoverGroup>
+      </div>
+      {renderSortDropdown()}
     </div>
   )
 }

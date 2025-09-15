@@ -76,7 +76,7 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
         <Divider className="my-4 md:mb-6" />
         {/* end heading */}
 
-        {/* <ListingFilterTabs filterOptions={filterOptions} /> */}
+        <ListingFilterTabs  />
         <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 md:gap-x-8 md:gap-y-12 lg:mt-10 lg:grid-cols-3 xl:grid-cols-4">
           {listings.map((listing) => (
             <StayCard2 key={listing.id} data={listing} />

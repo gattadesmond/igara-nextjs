@@ -16,7 +16,7 @@ interface BreadcrumbProps {
 
 const Breadcrumb: FC<BreadcrumbProps> = ({ items, className = '' }) => {
   return (
-    <nav className={`flex items-center space-x-1 text-sm text-neutral-600 dark:text-neutral-400 ${className}`} aria-label="Breadcrumb">
+    <nav className={`flex items-center space-x-1 text-sm text-neutral-600 dark:text-neutral-400 overflow-x-auto ${className}`} aria-label="Breadcrumb">
       <Link 
         href="/" 
         className="flex items-center hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
@@ -36,7 +36,7 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ items, className = '' }) => {
               {item.label}
             </Link>
           ) : (
-            <span className="text-neutral-900 dark:text-neutral-100 font-medium">
+            <span className="text-neutral-900 dark:text-neutral-100 font-medium whitespace-nowrap">
               {item.label}
             </span>
           )}

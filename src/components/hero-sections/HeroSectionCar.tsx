@@ -122,9 +122,9 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
               <span className="text-white/90"> 1000+ khách hàng</span>
             </div>
           </div>
-          <CarBrandCarousel
+          {/* <CarBrandCarousel
             className="w-full pt-8 pb-0"
-          />
+          /> */}
 
         </div>
 

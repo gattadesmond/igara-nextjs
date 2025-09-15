@@ -27,7 +27,7 @@ const SectionGridHasMap: FC<Props> = ({ className, listings, category, filterOpt
         <h1 id="heading" className="text-lg font-semibold sm:text-xl">
          Có 12 kết quả
         </h1>
-        {/* <ListingFilterTabs filterOptions={filterOptions} /> */}
+        <ListingFilterTabs  />
         <Divider />
         <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 2xl:gap-x-6">
           {listings.map((listing) => (
