@@ -74,7 +74,7 @@ async function PageHome() {
           </div>
         </div>
 
-        <SectionOurFeatures type="type2" rightImg={ourFeatureImage} />
+        <SectionOurFeatures type="type2" />
 
         <div>
           <HeadingWithSub subheading="Explore houses based on 10 types of stays">

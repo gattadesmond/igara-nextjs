@@ -111,7 +111,7 @@ async function Home() {
     <main className="relative overflow-hidden">
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
         <SectionHero />
-        <SectionOurFeatures type="type2" rightImg={ourFeatureImage} />
+        <SectionOurFeatures type="type2" />
         <SectionGridFeatureProperty listing={listings} />
         <div className="relative py-20">
           <BackgroundSection className="bg-neutral-100 dark:bg-black/20" />

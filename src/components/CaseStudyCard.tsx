@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 
 interface CaseStudyCardProps {
-  study: CaseStudy;
+  study: any;
   className?: string;
 }
 
