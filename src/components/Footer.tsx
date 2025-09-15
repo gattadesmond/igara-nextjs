@@ -11,47 +11,47 @@ interface WidgetFooterMenu {
 
 const widgetMenus: WidgetFooterMenu[] = [
   {
-    id: '5',
-    title: 'Getting started',
-    menus: [
-      { href: '#', label: 'Installation' },
-      { href: '#', label: 'Release Notes' },
-      { href: '#', label: 'Upgrade Guide' },
-      { href: '#', label: 'Browser Support' },
-      { href: '#', label: 'Editor Support' },
-    ],
-  },
-  {
     id: '1',
-    title: 'Explore',
+    title: 'Dịch vụ',
     menus: [
-      { href: '#', label: 'Design features' },
-      { href: '#', label: 'Prototyping' },
-      { href: '#', label: 'Design systems' },
-      { href: '#', label: 'Pricing' },
-      { href: '#', label: 'Security' },
+      { href: '/dich-vu/sua-dong-co-o-to', label: 'Sửa động cơ ô tô' },
+      { href: '/dich-vu/sua-phanh-o-to', label: 'Sửa phanh ô tô' },
+      { href: '/dich-vu/sua-dieu-hoa-o-to', label: 'Sửa điều hòa ô tô' },
+      { href: '/dich-vu/sua-he-thong-dien-o-to', label: 'Sửa hệ thống điện' },
+      { href: '/dich-vu/bao-duong-dinh-ky', label: 'Bảo dưỡng định kỳ' },
     ],
   },
   {
     id: '2',
-    title: 'Resources',
+    title: 'Hãng xe',
     menus: [
-      { href: '#', label: 'Best practices' },
-      { href: '#', label: 'Support' },
-      { href: '#', label: 'Developers' },
-      { href: '#', label: 'Learn design' },
-      { href: '#', label: 'Releases' },
+      { href: '/hang-xe/toyota', label: 'Toyota' },
+      { href: '/hang-xe/honda', label: 'Honda' },
+      { href: '/hang-xe/ford', label: 'Ford' },
+      { href: '/hang-xe/hyundai', label: 'Hyundai' },
+      { href: '/hang-xe/mazda', label: 'Mazda' },
+    ],
+  },
+  {
+    id: '3',
+    title: 'Hỗ trợ',
+    menus: [
+      { href: '/lien-he', label: 'Liên hệ' },
+      { href: '/hoi-dap', label: 'Hỏi đáp' },
+      { href: '/huong-dan', label: 'Hướng dẫn sử dụng' },
+      { href: '/bao-hanh', label: 'Chính sách bảo hành' },
+      { href: '/ho-tro', label: 'Trung tâm hỗ trợ' },
     ],
   },
   {
     id: '4',
-    title: 'Community',
+    title: 'Công ty',
     menus: [
-      { href: '#', label: 'Discussion Forums' },
-      { href: '#', label: 'Code of Conduct' },
-      { href: '#', label: 'Community Resources' },
-      { href: '#', label: 'Contributing' },
-      { href: '#', label: 'Concurrent Mode' },
+      { href: '/gioi-thieu', label: 'Giới thiệu' },
+      { href: '/tin-tuc', label: 'Tin tức' },
+      { href: '/tuyen-dung', label: 'Tuyển dụng' },
+      { href: '/doi-tac', label: 'Đối tác' },
+      { href: '/lien-ket', label: 'Liên kết' },
     ],
   },
 ]
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
       <div className="container grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10">
         <div className="col-span-2 grid grid-cols-4 gap-5 md:col-span-4 lg:flex lg:flex-col lg:md:col-span-1">
           <div className="col-span-2 md:col-span-1">
-            <Logo className="w-20" />
+            <Logo className="w-32" />
           </div>
           <div className="col-span-2 flex items-center md:col-span-3">
             <SocialsList1 className="flex items-center gap-x-3 lg:flex-col lg:items-start lg:gap-x-0 lg:gap-y-2.5" />

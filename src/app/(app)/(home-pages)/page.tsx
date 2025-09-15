@@ -20,8 +20,10 @@ import ButtonPrimary from '@/shared/ButtonPrimary'
 import { Divider } from '@/shared/divider'
 import HeadingWithSub from '@/shared/Heading'
 import { Metadata } from 'next'
-import {StaySearchForm} from '@/components/HeroSearchForm/StaySearchForm'
+import { StaySearchForm } from '@/components/HeroSearchForm/StaySearchForm'
 import HeroSectionCar from '@/components/hero-sections/HeroSectionCar'
+import AboutSection from '@/components/AboutSection'
+import SectionCaseStudy from '@/components/SectionCaseStudy'
 
 export const metadata: Metadata = {
   title: 'iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín',
@@ -37,62 +39,34 @@ async function Page() {
   return (
     <main className="relative overflow-hidden">
       <BgGlassmorphism />
-      <HeroSectionCar 
+      <HeroSectionCar
       />
 
+      <AboutSection className="py-14 md:py-16 " />
+
+      <section className=' py-14 md:py-16 bg-neutral-50'>
+        <div className='container'>
+          <SectionHowItWork />
+
+        </div>
+      </section>
+
+      <section className=' py-14 md:py-16 '>
+        <div className='container'>
+        <SectionCaseStudy />
+        </div>
+      </section>
+
+
+
+
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
-        <HeroSectionWithSearchForm1
-          heading="iGara - Tìm Gara Ô Tô Gần Đây – Đặt Lịch Ngay "
-          image={{
-            src: "/images/hero-right-2.png",
-            width: 1000,
-            height: 1000,
-          }}
-          imageAlt="hero"
-          searchForm={<StaySearchForm formStyle="default" />}
-          description={
-            <>
-              <p className="max-w-xl text-base text-neutral-500 sm:text-xl dark:text-neutral-400">
-              Dễ dàng tìm gara trong hệ thống 100+ cửa hàng và đại lý sửa chữa ô tô đạt chứng nhận khắp cả nước.
-              </p>
-            </>
-          }
-        />
-
-        <div>
-          <HeadingWithSub subheading="Explore the best places to stay in the world.">
-            Let&apos;s go on an adventure
-          </HeadingWithSub>
-          <SectionSliderNewCategories categoryCardType="card3" categories={categories.slice(0, 7)} />
-        </div>
-
-        <SectionOurFeatures className="py-14" />
-        <SectionGridFeaturePlaces stayListings={stayListings} cardType="card2" />
-        <Divider />
-        <SectionHowItWork />
-        <div className="relative py-20">
-          <BackgroundSection />
-          <HeadingWithSub isCenter subheading="Keep calm & travel on">
-            Become a host
-          </HeadingWithSub>
-          <SectionGridAuthorBox authors={authors} />
-        </div>
-        <SectionSubscribe2 />
-        <Divider />
-
-        <div>
-          <HeadingWithSub isCenter subheading={'Great places near where you live'}>
-            Explore nearby
-          </HeadingWithSub>
-          <SectionGridCategoryBox categories={categories.slice(0, 8)} />
-        </div>
 
         <div className="relative py-16">
-          <BackgroundSection />
-          <SectionBecomeAnAuthor />
+          <SectionClientSay />
         </div>
 
-        <div>
+        {/* <div>
           <HeadingWithSub subheading="Explore houses based on 10 types of stays">
             Explore by types of stays.
           </HeadingWithSub>
@@ -102,10 +76,16 @@ async function Page() {
             categoryCardType="card5"
           />
         </div>
-        <SectionVideos />
+
+
+
         <div className="relative py-16">
-          <SectionClientSay />
-        </div>
+          <BackgroundSection />
+          <SectionBecomeAnAuthor />
+        </div> */}
+
+
+
       </div>
     </main>
   )

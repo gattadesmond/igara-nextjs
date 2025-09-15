@@ -11,7 +11,7 @@ import userImage6 from '@/images/avatars/6.png'
 import userImage7 from '@/images/avatars/7.png'
 import qlImage from '@/images/avatars/ql.png'
 import qrImage from '@/images/avatars/qr.png'
-import HeadingWithSub from '@/shared/Heading'
+import SectionHeading from '@/components/SectionHeading'
 import { StarIcon } from '@heroicons/react/24/solid'
 import clsx from 'clsx'
 import type { EmblaOptionsType } from 'embla-carousel'
@@ -23,18 +23,28 @@ import { FC, useContext } from 'react'
 const DEMO_DATA = [
   {
     id: 1,
-    clientName: 'Tiana Abie',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Nguyễn Văn Minh',
+    content: 'Gara rất uy tín, thợ sửa chữa tay nghề cao. Xe tôi bị hỏng động cơ, sau khi sửa chạy êm như mới. Giá cả hợp lý, bảo hành tốt.',
   },
   {
     id: 2,
-    clientName: 'Lennie Swiffan',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Trần Thị Hương',
+    content: 'Dịch vụ sửa chữa chuyên nghiệp, thợ thân thiện và nhiệt tình. Xe được bảo dưỡng kỹ lưỡng, phụ tùng chính hãng. Rất hài lòng!',
   },
   {
     id: 3,
-    clientName: 'Berta Emili',
-    content: 'Great quality products, affordable prices, fast and friendly delivery. I very recommend.',
+    clientName: 'Lê Hoàng Nam',
+    content: 'Gara có thiết bị hiện đại, thợ có kinh nghiệm lâu năm. Sửa phanh và thay dầu nhanh chóng, chất lượng tốt. Giá cả phải chăng.',
+  },
+  {
+    id: 4,
+    clientName: 'Phạm Thị Lan',
+    content: 'Đã sử dụng dịch vụ nhiều lần, luôn hài lòng. Thợ sửa chữa tận tâm, giải thích rõ ràng về tình trạng xe. Bảo hành dài hạn.',
+  },
+  {
+    id: 5,
+    clientName: 'Hoàng Văn Đức',
+    content: 'Gara uy tín, thợ sửa chữa giỏi. Xe bị hỏng hộp số, sau khi sửa chạy mượt mà. Phụ tùng chính hãng, giá cả hợp lý.',
   },
 ]
 
@@ -51,8 +61,8 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
     slidesToScroll: 1,
     loop: true,
   },
-  heading = 'Good news from far away 🥇',
-  subHeading = "Let's see what people think of Chisfis",
+  heading = 'Khách hàng nói gì về chúng tôi 🚗',
+  subHeading = "Những đánh giá chân thực từ khách hàng đã sử dụng dịch vụ",
 }) => {
   const theme = useContext(ThemeContext)
 
@@ -67,10 +77,14 @@ const SectionClientSay: FC<SectionClientSayProps> = ({
 
   return (
     <div className={clsx('relative flow-root', className)}>
-      <HeadingWithSub subheading={subHeading} isCenter>
-        {heading}
-      </HeadingWithSub>
-      <div className="relative mx-auto max-w-2xl md:mb-16">
+      <SectionHeading 
+        subtitle=""
+        title={heading}
+        description={subHeading}
+        textAlign="center"
+        maxWidth="2xl"
+      />
+      <div className="relative mx-auto max-w-2xl mt-16">
         {/* BACKGROUND USER IMAGES */}
         <div className="hidden md:block">
           <Image sizes="100px" className="absolute top-9 -left-20 size-16" src={userImage2} alt="client" />

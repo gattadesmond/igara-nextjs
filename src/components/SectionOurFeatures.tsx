@@ -1,13 +1,11 @@
-import rightImgPng from '@/images/our-features.png'
 import { Badge } from '@/shared/Badge'
 import { Heading } from '@/shared/Heading'
 import clsx from 'clsx'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { FC } from 'react'
 
 interface Props {
   className?: string
-  rightImg?: StaticImageData
   type?: 'type1' | 'type2'
   subHeading?: string
   heading?: string
@@ -21,10 +19,10 @@ interface Props {
 
 const SectionOurFeatures: FC<Props> = ({
   className,
-  rightImg = rightImgPng,
+  rightImg = "/images/hero-right-2.png",
   type = 'type1',
   subHeading = 'Benefits',
-  heading = 'Happening cities',
+  heading = 'iGara - Tìm Gara Ô Tô Gần Đây – Đặt Lịch Ngay ',
   listItems = [
     {
       badge: 'Advertising',
@@ -48,17 +46,20 @@ const SectionOurFeatures: FC<Props> = ({
   return (
     <div
       className={clsx(
-        'relative flex flex-col items-center',
+        'relative grid grid-cols-1 lg:grid-cols-2 gap-10',
         className,
-        type === 'type1' ? 'lg:flex-row' : 'lg:flex-row-reverse'
       )}
     >
-      <div className="grow">
-        <Image src={rightImg} alt="Features" sizes="(max-width: 1024px) 100vw, 50vw" priority />
+      <div className="grow relative">
+        <div className='relative aspect-w-1 aspect-h-1'>
+          <Image src={rightImg} fill alt="Features" sizes="(max-width: 1024px) 100vw, 50vw" priority />
+        </div>
       </div>
-      <div className={`mt-10 max-w-2xl shrink-0 lg:mt-0 lg:w-2/5 ${type === 'type1' ? 'lg:ps-16' : 'lg:pe-16'}`}>
+      <div className={``}>
         <span className="text-sm tracking-widest text-gray-400 uppercase">{subHeading}</span>
         <Heading className="mt-4">{heading}</Heading>
+
+        <p className="max-w-xl text-base text-neutral-500 sm:text-xl dark:text-neutral-400">Dễ dàng tìm gara trong hệ thống 100+ cửa hàng và đại lý sửa chữa ô tô đạt chứng nhận khắp cả nước.</p>
 
         <ul className="mt-16 flex flex-col items-start gap-y-10">
           {listItems.map((item, index) => (
