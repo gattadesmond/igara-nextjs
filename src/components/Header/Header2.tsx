@@ -8,6 +8,7 @@ import CurrLangDropdown from './CurrLangDropdown'
 import HamburgerBtnMenu from './HamburgerBtnMenu'
 import Navigation from './Navigation/Navigation'
 import NotifyDropdown from './NotifyDropdown'
+import { Button } from '@/shared/Button'
 
 interface Props {
   hasBorder?: boolean
@@ -29,7 +30,7 @@ const Header2: FC<Props> = async ({ hasBorder = true, className }) => {
           !hasBorder && 'has-[.header-popover-full-panel]:border-b'
         )}
       >
-        <div className="container flex h-20 justify-between">
+        <div className="container flex h-16 justify-between">
           <div className="flex flex-1 items-center lg:hidden">
             <HamburgerBtnMenu />
           </div>
@@ -43,9 +44,10 @@ const Header2: FC<Props> = async ({ hasBorder = true, className }) => {
           </div>
 
           <div className="flex flex-1 items-center justify-end gap-x-2.5 sm:gap-x-6">
-            <CurrLangDropdown currencies={currencies} languages={languages} className="hidden md:block" />
-            <NotifyDropdown />
-            <AvatarDropdown />
+            <Button color='red' className='py-2 px-3' href="/">Tư vấn miễn phí</Button>
+            {/* <NotifyDropdown />
+             */}
+             <AvatarDropdown />
           </div>
         </div>
       </div>

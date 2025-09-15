@@ -6,10 +6,10 @@ interface LogoProps {
   className?: string
 }
 
-const Logo: React.FC<LogoProps> = ({ className = 'w-22 sm:w-24' }) => {
+const Logo: React.FC<LogoProps> = ({ className = '' }) => {
   return (
     <Link href="/" className={`inline-block text-primary-600 focus:ring-0 focus:outline-hidden ${className}`}>
-      <Image src="/images/igara-logo.png" alt="Logo" width={50} height={50} />
+      <Image src="/images/igara-logo-txt.png" alt="Logo" width={152} height={54} />
     </Link>
   )
 }

@@ -1,6 +1,6 @@
 import '@/styles/tailwind.css'
 import { Metadata } from 'next'
-import { Inter, Oswald } from 'next/font/google'
+import { Inter, Saira } from 'next/font/google'
 import 'rc-slider/assets/index.css'
 import CustomizeControl from './customize-control'
 import ThemeProvider from './theme-provider'
@@ -11,13 +11,13 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
 })
 
-const oswald = Oswald({
+const saira = Saira({
   subsets: ['latin'],
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
 })
 
-export { oswald }
+export { saira }
 
 export const metadata: Metadata = {
   title: {
