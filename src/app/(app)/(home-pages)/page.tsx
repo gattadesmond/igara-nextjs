@@ -21,6 +21,7 @@ import { Divider } from '@/shared/divider'
 import HeadingWithSub from '@/shared/Heading'
 import { Metadata } from 'next'
 import {StaySearchForm} from '@/components/HeroSearchForm/StaySearchForm'
+import HeroSectionCar from '@/components/hero-sections/HeroSectionCar'
 
 export const metadata: Metadata = {
   title: 'iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín',
@@ -36,11 +37,15 @@ async function Page() {
   return (
     <main className="relative overflow-hidden">
       <BgGlassmorphism />
+      <HeroSectionCar 
+      
+      />
+
       <div className="relative container mb-24 flex flex-col gap-y-24 lg:mb-28 lg:gap-y-32">
         <HeroSectionWithSearchForm1
           heading="iGara - Tìm Gara Ô Tô Gần Đây – Đặt Lịch Ngay "
           image={{
-            src: "/images/igara-poster.jpg",
+            src: "/images/hero-right-2.png",
             width: 1000,
             height: 1000,
           }}
