@@ -19,15 +19,20 @@ const SectionListingReviews = ({ reviews, reviewCount, reviewStart }: Props) => 
     <div className="flex flex-col gap-y-6 pt-8 sm:gap-y-8">
       {/* HEADING */}
       <div>
-        <SectionHeading>Đánh giá khách hàng ({reviewCount} đánh giá) </SectionHeading>
-        <div className="mt-4 flex items-center">
-          {[0, 1, 2, 3, 4].map((number) => (
-            <StarIcon
-              key={number}
-              aria-hidden="true"
-              className={clsx(reviewStart > number ? 'text-yellow-400' : 'text-gray-200', 'size-6 shrink-0')}
-            />
-          ))}
+        <SectionHeading>Đánh giá từ khách hàng ({reviewCount} đánh giá)</SectionHeading>
+        <div className="mt-4 flex items-center gap-2">
+          <div className="flex items-center">
+            {[0, 1, 2, 3, 4].map((number) => (
+              <StarIcon
+                key={number}
+                aria-hidden="true"
+                className={clsx(reviewStart > number ? 'text-yellow-400' : 'text-gray-200', 'size-6 shrink-0')}
+              />
+            ))}
+          </div>
+          <span className="text-lg font-semibold text-neutral-700 dark:text-neutral-300">
+            {reviewStart}/5
+          </span>
         </div>
       </div>
 
@@ -39,7 +44,7 @@ const SectionListingReviews = ({ reviews, reviewCount, reviewStart }: Props) => 
           sizeClass="h-16 px-6 py-3"
           fontClass="text-base/6"
           rounded="rounded-full"
-          placeholder="Share your thoughts ..."
+          placeholder="Chia sẻ trải nghiệm sửa chữa xe của bạn..."
         />
         <div className="absolute end-2 top-1/2 -translate-y-1/2">
           <ButtonCircle className="size-12!">
@@ -54,7 +59,7 @@ const SectionListingReviews = ({ reviews, reviewCount, reviewStart }: Props) => 
           <ListingReview key={index} className="py-7" reivew={item} />
         ))}
         <div className="flex w-full justify-center pt-8">
-          <ButtonSecondary>View more 20 reviews</ButtonSecondary>
+          <ButtonSecondary>Xem thêm {reviewCount > 5 ? reviewCount - 5 : 20} đánh giá</ButtonSecondary>
         </div>
       </div>
     </div>

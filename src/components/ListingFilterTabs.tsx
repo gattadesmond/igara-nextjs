@@ -331,7 +331,7 @@ const sortOptions = [
 const ListingFilterTabs = ({
   filterOptions = demo_filters_options,
 }: {
-  filterOptions?: FilterOption[]
+  filterOptions?:any
 }) => {
   const [showAllFilter, setShowAllFilter] = useState(false)
   const [selectedSort, setSelectedSort] = useState('recommended')
@@ -384,7 +384,7 @@ const ListingFilterTabs = ({
 
               <div className="hidden-scrollbar grow overflow-y-auto text-start">
                 <div className="divide-y divide-neutral-200 px-4 sm:px-8 dark:divide-neutral-800">
-                  {filterOptions.map((filterOption, index) =>
+                  {filterOptions.map((filterOption : any, index : any) =>
                     filterOption ? (
                       <div key={index} className="py-7">
                         <h3 className="text-xl font-medium">{filterOption.label}</h3>
@@ -477,7 +477,7 @@ const ListingFilterTabs = ({
         {renderTabAllFilters()}
         <PopoverGroup className="hidden flex-wrap gap-x-4 gap-y-2 md:flex" as={Form} action={handleFormSubmit}>
         <div className="h-auto w-px bg-neutral-200 dark:bg-neutral-700"></div>
-        {filterOptions.map((filterOption, index) => {
+        {filterOptions.map((filterOption : any, index : any) => {
           // only show 3 filters in the tab. Other filters will be shown in the All-filters-popover
           if (index > 2 || !filterOption) {
             return null
