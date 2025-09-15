@@ -73,7 +73,7 @@ const RealestateSearchFormMobile = () => {
         headingValue={locationInputTo || T['HeroSearchForm']['Location']}
       >
         <LocationInput
-          headingText={T['HeroSearchForm']['Where to find?']}
+          headingText="Tỉnh/thành"
           defaultValue={locationInputTo}
           onChange={(value) => {
             setLocationInputTo(value)
