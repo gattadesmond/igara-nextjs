@@ -25,10 +25,9 @@ const SectionGridHasMap: FC<Props> = ({ className, listings, category, filterOpt
     <div className={clsx('relative flex min-h-screen gap-6', className)}>
       <div className="flex w-full flex-1/2 flex-col gap-y-8 pt-8 pb-20">
         <h1 id="heading" className="text-lg font-semibold sm:text-xl">
-          Over {convertNumbThousand(category.count)} places
-          {category.handle !== 'all' ? ` in ${category.name}` : null}
+         Có 12 kết quả
         </h1>
-        <ListingFilterTabs filterOptions={filterOptions} />
+        {/* <ListingFilterTabs filterOptions={filterOptions} /> */}
         <Divider />
         <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 2xl:gap-x-6">
           {listings.map((listing) => (

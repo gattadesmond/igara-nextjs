@@ -12,10 +12,8 @@ const SectionMap = ({ className, heading, subheading }: Props) => {
     <div className="listingSection__wrap">
       {/* HEADING */}
       <div>
-        <SectionHeading>Location </SectionHeading>
-        <SectionSubheading> San Diego, CA, United States of America (SAN-San Diego Intl.) </SectionSubheading>
+        <SectionHeading>Ví trí </SectionHeading>
       </div>
-      <Divider className="w-14!" />
 
       {/* MAP */}
       <div className="aspect-w-5 rounded-xl ring-1 ring-black/10 aspect-h-6 sm:aspect-h-3 lg:aspect-h-2">
