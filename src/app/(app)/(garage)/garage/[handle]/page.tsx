@@ -21,10 +21,10 @@ import ButtonSecondary from '@/shared/ButtonSecondary'
 import { DescriptionDetails, DescriptionList, DescriptionTerm } from '@/shared/description-list'
 import { Divider } from '@/shared/divider'
 import T from '@/utils/getT'
-import { 
-  UsersIcon, 
-  PhoneIcon, 
-  ClockIcon, 
+import {
+  UsersIcon,
+  PhoneIcon,
+  ClockIcon,
   MapPinIcon,
   StarIcon,
   CheckCircleIcon,
@@ -54,6 +54,7 @@ import SectionListingReviews from '../../components/SectionListingReviews'
 import SectionMap from '../../components/SectionMap'
 import Breadcrumb from '@/components/Breadcrumb'
 import StayCard2 from '@/components/StayCard2'
+import { Button } from '@/shared/Button'
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params
@@ -155,7 +156,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
         <div className="flex flex-col gap-6">
           {/* Tên gara - H1 */}
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">{title}</h1>
-          
+
           {/* Thông tin cơ bản */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex items-center gap-3">
@@ -165,7 +166,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
                 <p className="font-medium">{address}, {city}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <PhoneIcon className="h-5 w-5 text-neutral-500" />
               <div>
@@ -173,7 +174,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
                 <p className="font-medium">{garageDetails.phone}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <ClockIcon className="h-5 w-5 text-neutral-500" />
               <div>
@@ -218,19 +219,19 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
         <SectionHeading>Giới thiệu về gara</SectionHeading>
         <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
           <p>
-            {title} là một trong những gara sửa chữa ô tô uy tín nhất tại {city} với hơn {garageDetails.operatingYears} năm kinh nghiệm 
-            trong lĩnh vực bảo dưỡng và sửa chữa xe hơi. Chúng tôi chuyên sửa chữa các dòng xe {garageDetails.specialties.join(', ')} 
+            {title} là một trong những gara sửa chữa ô tô uy tín nhất tại {city} với hơn {garageDetails.operatingYears} năm kinh nghiệm
+            trong lĩnh vực bảo dưỡng và sửa chữa xe hơi. Chúng tôi chuyên sửa chữa các dòng xe {garageDetails.specialties.join(', ')}
             với đội ngũ kỹ thuật viên được đào tạo chuyên nghiệp và trang thiết bị hiện đại.
           </p>
           <br />
           <p>
-            <strong>Điểm mạnh của chúng tôi:</strong> Sử dụng phụ tùng chính hãng, quy trình bảo dưỡng chuẩn nhà sản xuất, 
-            bảo hành dài hạn và dịch vụ khách hàng tận tình. Gara được trang bị {garageDetails.facilities.length} cầu nâng 
+            <strong>Điểm mạnh của chúng tôi:</strong> Sử dụng phụ tùng chính hãng, quy trình bảo dưỡng chuẩn nhà sản xuất,
+            bảo hành dài hạn và dịch vụ khách hàng tận tình. Gara được trang bị {garageDetails.facilities.length} cầu nâng
             hiện đại, phòng chờ tiện nghi và dịch vụ cứu hộ 24/7.
           </p>
           <br />
           <p>
-            Chúng tôi cam kết mang đến cho khách hàng dịch vụ chất lượng cao với giá cả hợp lý. 
+            Chúng tôi cam kết mang đến cho khách hàng dịch vụ chất lượng cao với giá cả hợp lý.
             {garageDetails.warranty} và luôn sẵn sàng hỗ trợ khách hàng mọi lúc, mọi nơi.
           </p>
         </div>
@@ -242,7 +243,6 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     return (
       <div className="listingSection__wrap">
         <SectionHeading>Chứng chỉ & Đối tác</SectionHeading>
-        <SectionSubheading>Các chứng chỉ và đối tác thương hiệu uy tín</SectionSubheading>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {garageDetails.certifications.map((cert, index) => (
             <div key={index} className="flex items-center gap-3 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
@@ -259,7 +259,6 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     return (
       <div className="listingSection__wrap">
         <SectionHeading>Dịch vụ chính</SectionHeading>
-        <SectionSubheading>Các dịch vụ sửa chữa và bảo dưỡng chuyên nghiệp</SectionSubheading>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {garageDetails.services.map((service, index) => (
             <div key={index} className="flex items-start gap-4 p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
@@ -375,7 +374,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
         <SectionHeading>Giới thiệu CRM iGara</SectionHeading>
         <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
           <p>
-            Gara này sử dụng hệ thống quản lý CRM iGara - một giải pháp công nghệ tiên tiến giúp quản lý 
+            Gara này sử dụng hệ thống quản lý CRM iGara - một giải pháp công nghệ tiên tiến giúp quản lý
             khách hàng, lịch hẹn và dịch vụ một cách chuyên nghiệp. Với iGara, khách hàng có thể:
           </p>
           <ul className="mt-4 space-y-2 list-disc list-inside">
@@ -392,68 +391,50 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
 
   const renderSidebarBooking = () => {
     return (
-      <div className="listingSection__wrap sm:shadow-xl">
-        {/* Status */}
-        <div className="flex items-center gap-3 mb-6">
-          {status === 'open' ? (
-            <CheckCircleIcon className="h-6 w-6 text-green-500" />
-          ) : (
-            <XCircleIcon className="h-6 w-6 text-red-500" />
-          )}
-          <span className={`font-semibold ${status === 'open' ? 'text-green-600' : 'text-red-600'}`}>
-            {status === 'open' ? 'Đang mở cửa' : 'Đã đóng cửa'}
-          </span>
-        </div>
-
-        {/* Contact Info */}
-        <div className="space-y-4 mb-6">
-          <div className="flex items-center gap-3">
-            <PhoneIcon className="h-5 w-5 text-neutral-500" />
-            <div>
-              <p className="text-sm text-neutral-500">Hotline</p>
-              <p className="font-semibold">{garageDetails.phone}</p>
-            </div>
+      <div className="space-y-6">
+        {/* Appointment Booking Section */}
+        <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-sm border border-neutral-200 dark:border-neutral-700">
+          <h3 className="text-neutral-700 dark:text-neutral-300 text-sm font-medium mb-3">
+            Thời gian hoạt động :
+          </h3>
+          <div className="text-xl font-bold text-neutral-900 dark:text-white mb-6">
+            16/9/2025 lúc 9:00 sáng
           </div>
-          
-          <div className="flex items-center gap-3">
-            <ClockIcon className="h-5 w-5 text-neutral-500" />
-            <div>
-              <p className="text-sm text-neutral-500">Giờ mở cửa</p>
-              <p className="font-semibold">{openTime}</p>
-            </div>
+
+          <div className="flex items-center gap-3 mb-6">
+            {status === 'open' ? (
+              <CheckCircleIcon className="h-6 w-6 text-green-500" />
+            ) : (
+              <XCircleIcon className="h-6 w-6 text-red-500" />
+            )}
+            <span className={`font-semibold ${status === 'open' ? 'text-green-600' : 'text-red-600'}`}>
+              {status === 'open' ? 'Đang mở cửa' : 'Đã đóng cửa'}
+            </span>
           </div>
-        </div>
 
-        {/* Booking Buttons */}
-        <div className="space-y-3">
-          <ButtonPrimary className="w-full">
-            <CalendarIcon className="h-5 w-5 mr-2" />
-            Đặt lịch hẹn
-          </ButtonPrimary>
-          
-          <ButtonSecondary className="w-full">
-            <PhoneIcon className="h-5 w-5 mr-2" />
-            Gọi ngay
-          </ButtonSecondary>
-        </div>
-
-        {/* Quick Info */}
-        <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Đánh giá:</span>
-              <span className="font-semibold">{reviewStart}/5 ({reviewCount} đánh giá)</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Khoảng cách:</span>
-              <span className="font-semibold">{price}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-neutral-500">Năm hoạt động:</span>
-              <span className="font-semibold">{garageDetails.operatingYears} năm</span>
-            </div>
+          <div className="text-center space-y-3">
+            <Button className="w-full font-bold" color='red'>
+              Đặt lịch hẹn
+            </Button>
+           
+            <ButtonSecondary className="w-full">
+              <PhoneIcon className="h-5 w-5 mr-2" />
+              Gọi ngay
+            </ButtonSecondary>
           </div>
         </div>
+
+        {/* Diagnostic Information Section */}
+        <div className="bg-neutral-50 dark:bg-neutral-700 rounded-lg p-6">
+          <h3 className="text-neutral-900 dark:text-white text-lg font-bold mb-3">
+            Không biết xe bị gì?
+          </h3>
+          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
+            Gara này có thể giúp bạn chẩn đoán vấn đề, dù là tiếng động, khói hay mùi lạ mà bạn đang gặp phải.
+          </p>
+        </div>
+
+
       </div>
     )
   }
@@ -469,14 +450,14 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
           ]}
         />
       </div>
-      
+
       {/* Album ảnh */}
       <HeaderGallery images={galleryImgs} />
 
       {/* MAIN */}
-      <main className="relative z-[1] mt-10 flex flex-col gap-8 lg:flex-row xl:gap-10">
+      <main className="relative z-[1] mt-10 grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-10">
         {/* CONTENT */}
-        <div className="flex w-full flex-col gap-y-8 lg:w-3/5 xl:w-[64%] xl:gap-y-10">
+        <div className="w-full grid grid-cols-1 gap-y-8">
           {renderGarageHeader()}
           {renderGarageDescription()}
           {renderCertifications()}
