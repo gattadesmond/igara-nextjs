@@ -6,7 +6,7 @@ import { ApplicationLayout } from '../application-layout'
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   return (
-    <ApplicationLayout header={<Header hasBorderBottom={false} />}>
+    <ApplicationLayout >
       <div>
         <div className="container">
           {children}

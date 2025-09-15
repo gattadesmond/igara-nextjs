@@ -35,6 +35,7 @@ import { SectionHeading, SectionSubheading } from '../../components/SectionHeadi
 import SectionHost from '../../components/SectionHost'
 import SectionListingReviews from '../../components/SectionListingReviews'
 import SectionMap from '../../components/SectionMap'
+import Breadcrumb from '@/components/Breadcrumb'
 
 export async function generateMetadata({ params }: { params: Promise<{ handle: string }> }): Promise<Metadata> {
   const { handle } = await params
@@ -155,6 +156,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     ]
     return (
       <div className="listingSection__wrap">
+       
         <SectionHeading>Stay information</SectionHeading>
         <div className="leading-relaxed text-neutral-700 dark:text-neutral-300">
           <span>
@@ -272,6 +274,14 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
   return (
     <div>
       {/*  HEADER */}
+      <div className="py-5">
+          <Breadcrumb
+            items={[
+              { label: 'Garage', href: '/garage' },
+              { label: title },
+            ]}
+          />
+        </div>
       <HeaderGallery images={galleryImgs} />
 
       {/* MAIN */}
