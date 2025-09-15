@@ -333,7 +333,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
     return (
       <div className="listingSection__wrap">
         <SectionHeading>Tiện ích & Dịch vụ</SectionHeading>
-        
+
         <div className="space-y-6">
           {amenities.map((amenity, index) => (
             <div key={index} className="flex items-start gap-4">
@@ -355,7 +355,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
               </div>
             </div>
           ))}
-          
+
           {/* Show more amenities button */}
           <div className="pt-4">
             <button className="text-blue-500 hover:text-blue-600 font-medium text-sm">
@@ -451,7 +451,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
             <Button className="w-full font-bold" color='red'>
               Đặt lịch hẹn
             </Button>
-           
+
             <ButtonSecondary className="w-full">
               <PhoneIcon className="h-5 w-5 mr-2" />
               Gọi ngay
@@ -502,6 +502,11 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
           {renderPriceList()}
           {renderFAQ()}
           {/* {renderIGaraIntro()} */}
+
+          <div>
+            <SectionListingReviews reviewCount={reviewCount} reviewStart={reviewStart} reviews={reviews} />
+        
+          </div>
         </div>
 
         {/* SIDEBAR */}
@@ -513,30 +518,8 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
       <Divider className="my-16" />
 
       {/* Reviews Section */}
-      <div className="flex flex-col gap-y-10">
-        <div className="flex flex-col gap-8 lg:flex-row lg:gap-10">
-          <div className="w-full lg:w-2/3">
-            <div className="listingSection__wrap">
-              <div className="flex items-center justify-between mb-6">
-                <SectionHeading>Đánh giá khách hàng</SectionHeading>
-                <div className="flex gap-2">
-                  <ButtonSecondary>Mới nhất</ButtonSecondary>
-                  <ButtonSecondary>Đánh giá cao nhất</ButtonSecondary>
-                </div>
-              </div>
-              <SectionListingReviews reviewCount={reviewCount} reviewStart={reviewStart} reviews={reviews} />
-              <div className="mt-6">
-                <ButtonPrimary>
-                  <ChatBubbleLeftRightIcon className="h-5 w-5 mr-2" />
-                  Viết đánh giá
-                </ButtonPrimary>
-              </div>
-            </div>
-          </div>
-          <div className="w-full lg:w-1/3">
-            <SectionHost {...host} />
-          </div>
-        </div>
+      <div className="grid grid-cols-1 gap-y-10">
+      
 
         {/* Google Map */}
         <SectionMap />
@@ -544,8 +527,7 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
         {/* Nearby Garages */}
         <div className="listingSection__wrap">
           <SectionHeading>Gara cùng khu vực</SectionHeading>
-          <SectionSubheading>Khám phá các gara khác gần đây</SectionSubheading>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {nearbyGarages.map((garage) => (
               <StayCard2 key={garage.id} data={garage} />
             ))}

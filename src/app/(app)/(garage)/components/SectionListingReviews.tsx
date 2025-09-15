@@ -19,7 +19,7 @@ const SectionListingReviews = ({ reviews, reviewCount, reviewStart }: Props) => 
     <div className="flex flex-col gap-y-6 pt-8 sm:gap-y-8">
       {/* HEADING */}
       <div>
-        <SectionHeading>Reviews ({reviewCount} reviews) </SectionHeading>
+        <SectionHeading>Đánh giá khách hàng ({reviewCount} đánh giá) </SectionHeading>
         <div className="mt-4 flex items-center">
           {[0, 1, 2, 3, 4].map((number) => (
             <StarIcon

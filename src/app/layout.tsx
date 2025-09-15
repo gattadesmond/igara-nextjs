@@ -21,11 +21,17 @@ export { saira }
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Chisfis',
-    default: 'Chisfis - Booking online React Next.js template',
+    template: '%s - iGara',
+    default: 'iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín',
   },
-  description: 'Booking online & rental online Next.js Template',
-  keywords: ['Chisfis', 'Booking online', 'Rental online', 'React Next.js template'],
+  description: 'Nền tảng tra cứu, tìm kiếm gara ô tô uy tín với đầy đủ thông tin đi kèm với chất lượng. Tìm kiếm ngay.',
+  keywords: [
+    'garage ô tô', 'sửa chữa ô tô', 'bảo dưỡng xe hơi', 'garage uy tín',
+    'sửa xe gần đây', 'garage Hà Nội', 'garage TP.HCM', 'garage Đà Nẵng',
+    'thay lốp xe', 'sửa động cơ', 'bảo dưỡng định kỳ', 'garage 24/7',
+    'sửa chữa xe hơi', 'garage chuyên nghiệp', 'dịch vụ ô tô', 'garage giá rẻ',
+    'iGara', 'tìm garage', 'garage gần đây', 'đặt lịch sửa xe'
+  ],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
