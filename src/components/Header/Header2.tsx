@@ -44,7 +44,7 @@ const Header2: FC<Props> = async ({ hasBorder = true, className }) => {
               <Button color='red' className='py-2 px-3 ' href="/">Tư vấn miễn phí</Button>
               {/* <NotifyDropdown />
              */}
-              <AvatarDropdown />
+              {/* <AvatarDropdown /> */}
             </div>
 
 

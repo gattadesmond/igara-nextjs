@@ -28,7 +28,7 @@ export function CarBrandCarousel({className}: {className: string}) {
             {carBrands.map((brand, index) => (
                 <div
                     key={`${brand.name}-first-${index}`}
-                    className="flex-shrink-0 w-[100px] h-[50px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 group"
+                    className="flex-shrink-0 sm:w-[100px] sm:h-[50px] w-[50px] h-[40px] flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100 group"
                 >
                     <Image
                         src={brand.src}

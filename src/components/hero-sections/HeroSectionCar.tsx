@@ -59,7 +59,7 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
         </div>
 
         <div className="mx-auto flex max-w-[850px] flex-col items-center gap-6 px-5">
-          <h1 className="font-headline text-4xl mx-auto !block text-center font-bold text-balance md:text-5xl xl:text-5xl leading-normal uppercase text-white">
+          <h1 className="font-headline text-3xl mx-auto !block text-center font-bold text-balance md:text-4xl xl:text-5xl leading-normal uppercase text-white">
             iGara - Nền tảng tìm gara gần đây nhanh chóng và uy tín
           </h1>
           <p className="text-center text-white/80 text-balance ">
@@ -122,7 +122,6 @@ export default function HeroSectionCar({ className = '' }: HeroSectionProps) {
           </div>
           <CarBrandCarousel
             className="w-full pt-8 pb-0"
-            speed={40}  
           />
 
         </div>

@@ -1,10 +1,9 @@
 'use client'
 
 import { getCurrencies, getLanguages, TNavigationItem } from '@/data/navigation'
-import ButtonPrimary from '@/shared/ButtonPrimary'
+import {Button} from '@/shared/Button'
 import { Divider } from '@/shared/divider'
 import { Link } from '@/shared/link'
-import SocialsList from '@/shared/SocialsList'
 import { Disclosure, DisclosureButton, DisclosurePanel, useClose } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import { Search01Icon } from '@hugeicons/core-free-icons'
@@ -120,35 +119,23 @@ const SidebarNavigation: React.FC<Props> = ({ data, currencies, languages }) => 
 
   return (
     <div>
-      <span>Discover the most outstanding articles on all topics of life. Write your stories and share them</span>
 
-      <div className="mt-4 flex items-center justify-between">
-        <SocialsList itemClass="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full text-xl" />
-      </div>
-      <div className="mt-5">{renderSearchForm()}</div>
-      <ul className="flex flex-col gap-y-1 px-2 py-6">{data?.map(_renderItem)}</ul>
+      <ul className="flex flex-col gap-y-1 px-2  pb-6">{data?.map(_renderItem)}</ul>
       <Divider className="mb-6" />
 
       {/* FOR OUR DEMO */}
 
       <div className="flex items-center justify-between gap-x-2.5 py-6">
-        <ButtonPrimary
-          href="https://themeforest.net/item/chisfis-online-booking-nextjs-template/43399526"
+        <Button
+        color='red'
+          href="/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Buy this template
-        </ButtonPrimary>
+          Tư vấn miễn phí
+        </Button>
 
-        <CurrLangDropdown
-          currencies={currencies}
-          languages={languages}
-          panelAnchor={{
-            to: 'top end',
-            gap: 12,
-          }}
-          panelClassName="z-10 w-72 p-4!"
-        />
+      
       </div>
     </div>
   )
