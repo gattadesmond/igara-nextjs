@@ -65,16 +65,15 @@ const Page = async ({ params }: { params: Promise<{ handle?: string[] }> }) => {
 
         {/* start heading */}
         <div className="flex flex-wrap items-center justify-between gap-x-2.5 gap-y-5">
-          <h2 id="heading" className="scroll-mt-20 text-lg font-semibold sm:text-xl">
-            Over {convertNumbThousand(category.count)} places
-            {category.handle !== 'all' ? ` in ${category.name}` : null}
-          </h2>
+          <div id="heading" className="scroll-mt-20 text-lg font-semibold sm:text-xl">
+           Có 12 kết quả
+          </div>
           <Button color="white" className="ms-auto" href={'/garage-map/' + category.handle}>
-            <span className="me-1">Show map</span>
+            <span className="me-1">View map</span>
             <HugeiconsIcon icon={MapsLocation01Icon} size={20} color="currentColor" strokeWidth={1.5} />
           </Button>
         </div>
-        <Divider className="my-8 md:mb-12" />
+        <Divider className="my-4 md:mb-6" />
         {/* end heading */}
 
         <ListingFilterTabs filterOptions={filterOptions} />
