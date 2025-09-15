@@ -35,12 +35,14 @@ import {
   TruckIcon,
   BuildingOfficeIcon,
   HeartIcon,
-  ChatBubbleLeftRightIcon
+  ChatBubbleLeftRightIcon,
+  ChevronDownIcon
 } from '@heroicons/react/24/outline'
 import { Metadata } from 'next'
 import Form from 'next/form'
 import { redirect } from 'next/navigation'
 import { Fragment } from 'react'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 import DatesRangeInputPopover from '../../components/DatesRangeInputPopover'
 import GuestsInputPopover from '../../components/GuestsInputPopover'
 import HeaderGallery from '../../components/HeaderGallery'
@@ -352,10 +354,15 @@ const Page = async ({ params }: { params: Promise<{ handle: string }> }) => {
         <SectionHeading>Câu hỏi thường gặp</SectionHeading>
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
-              <h3 className="font-semibold text-lg mb-2">{faq.question}</h3>
-              <p className="text-neutral-600 dark:text-neutral-400">{faq.answer}</p>
-            </div>
+            <Disclosure key={index} as="div" className="border border-neutral-200 dark:border-neutral-700 rounded-lg">
+              <DisclosureButton className="group flex w-full items-center justify-between px-6 py-4 text-left hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors">
+                <h3 className="font-semibold text-lg text-neutral-900 dark:text-white">{faq.question}</h3>
+                <ChevronDownIcon className="h-5 w-5 text-neutral-500 transition-transform duration-200 group-data-[open]:rotate-180" />
+              </DisclosureButton>
+              <DisclosurePanel className="px-6 pb-4 border-t border-neutral-200 dark:border-neutral-700">
+                <p className="text-neutral-600 dark:text-neutral-400 pt-2">{faq.answer}</p>
+              </DisclosurePanel>
+            </Disclosure>
           ))}
         </div>
       </div>
